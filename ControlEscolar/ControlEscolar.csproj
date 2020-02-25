@@ -168,6 +168,7 @@
     <Compile Include="Controllers\AntonioController.cs" />
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
     <Compile Include="Controllers\Josue.cs" />
@@ -199,6 +200,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Grupo.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
     </Compile>
