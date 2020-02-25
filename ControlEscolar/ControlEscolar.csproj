@@ -286,15 +286,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Antonio\Materia.cshtml" />
-    <Content Include="Views\Antonio\Index.cshtml" />
-    <Content Include="Views\Daniela\Index.cshtml" />
-    <Content Include="Views\Paco\Index.cshtml" />
-    <Content Include="Views\Ricardo\Index.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
+    <Content Include="Views\Ricardo\Profesores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Daniela\" />
+    <Folder Include="Views\Paco\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
