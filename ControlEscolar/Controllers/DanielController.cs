@@ -13,5 +13,5 @@ namespace ControlEscolar.Controllers
         {
             return View();
         }
-    }
+    }   
 }
