@@ -1,0 +1,54 @@
+﻿<h2>Alumnos</h2>
+
+<form class="form-inline active-cyan-4">
+    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+            aria-label="Search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+</form>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
+
+<div class="modal" id ="modalAlumnos" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar Alumno</h5>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>-->
+            </div>
+            <div class="modal-body">
+                <!--<p>Modal body text goes here.</p>-->
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupId">Id</label>
+                        <input type="text" class="form-control" id="Id">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupNombre">Nombre</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Carrera</th>
+            <th scope="col">Semestre</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>

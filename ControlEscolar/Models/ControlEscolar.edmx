@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cursowebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="Al_Id" />
+          </Key>
+          <Property Name="Al_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Al_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Al_Apellido" Type="nchar" MaxLength="10" />
+          <Property Name="Al_Carrera_Id" Type="int" Nullable="false" />
+          <Property Name="Al_Semestre" Type="int" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Area_Id" />
+          </Key>
+          <Property Name="Area_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area_Nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Car_Id" />
+          </Key>
+          <Property Name="Car_Id" Type="int" Nullable="false" />
+          <Property Name="Car_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Car_Nivel" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="Grp_Id" />
+          </Key>
+          <Property Name="Grp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grp_Materia_Id" Type="int" Nullable="false" />
+          <Property Name="Grp_Profesor_Id" Type="int" Nullable="false" />
+          <Property Name="Grp_Turno" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="Ins_Id" />
+          </Key>
+          <Property Name="Ins_Id" Type="int" Nullable="false" />
+          <Property Name="Ins_Alumno_Id" Type="int" />
+          <Property Name="Ins_Grupo_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="Mat_Id" />
+          </Key>
+          <Property Name="Mat_Id" Type="int" Nullable="false" />
+          <Property Name="Mat_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mat_Carrera_Id" Type="int" Nullable="false" />
+          <Property Name="Mat_Area_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="Prf_Id" />
+          </Key>
+          <Property Name="Prf_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prf_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prf_Apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prf_Area_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_Alumno_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Car_Id" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="Al_Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Mat_Id" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="Grp_Materia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="Prf_Id" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="Grp_Profesor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Alumno">
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="Al_Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Ins_Alumno_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="Grp_Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Ins_Grupo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="Mat_Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Car_Id" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="Mat_Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Profesor">
+              <PropertyRef Name="Prf_Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cursowebModelStoreContainer">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" Schema="cursouser" store:Type="Tables" />
+          <EntitySet Name="Profesor" EntityType="Self.Profesor" Schema="cursouser" store:Type="Tables" />
+          <AssociationSet Name="FK_Alumno_Carrera" Association="Self.FK_Alumno_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Materia" Association="Self.FK_Grupo_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Profesor" Association="Self.FK_Grupo_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Alumno" Association="Self.FK_Inscripcion_Alumno">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Grupo" Association="Self.FK_Inscripcion_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Area" Association="Self.FK_Materia_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Carrera" Association="Self.FK_Materia_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Area" Association="Self.FK_Profesor_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Profesor" EntitySet="Profesor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cursowebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="Al_Id" />
+          </Key>
+          <Property Name="Al_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Al_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Al_Apellido" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Al_Carrera_Id" Type="Int32" Nullable="false" />
+          <Property Name="Al_Semestre" Type="Int32" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Alumno_Carrera" FromRole="Alumno" ToRole="Carrera" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK_Inscripcion_Alumno" FromRole="Alumno" ToRole="Inscripcion" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Area_Id" />
+          </Key>
+          <Property Name="Area_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Materia_Area" FromRole="Area" ToRole="Materia" />
+          <NavigationProperty Name="Profesor" Relationship="Self.FK_Profesor_Area" FromRole="Area" ToRole="Profesor" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Car_Id" />
+          </Key>
+          <Property Name="Car_Id" Type="Int32" Nullable="false" />
+          <Property Name="Car_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Car_Nivel" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Alumno" Relationship="Self.FK_Alumno_Carrera" FromRole="Carrera" ToRole="Alumno" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Materia_Carrera" FromRole="Carrera" ToRole="Materia" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="Grp_Id" />
+          </Key>
+          <Property Name="Grp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grp_Materia_Id" Type="Int32" Nullable="false" />
+          <Property Name="Grp_Profesor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Grp_Turno" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Grupo_Materia" FromRole="Grupo" ToRole="Materia" />
+          <NavigationProperty Name="Profesor" Relationship="Self.FK_Grupo_Profesor" FromRole="Grupo" ToRole="Profesor" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK_Inscripcion_Grupo" FromRole="Grupo" ToRole="Inscripcion" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="Ins_Id" />
+          </Key>
+          <Property Name="Ins_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ins_Alumno_Id" Type="Int32" />
+          <Property Name="Ins_Grupo_Id" Type="Int32" />
+          <NavigationProperty Name="Alumno" Relationship="Self.FK_Inscripcion_Alumno" FromRole="Inscripcion" ToRole="Alumno" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_Inscripcion_Grupo" FromRole="Inscripcion" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="Mat_Id" />
+          </Key>
+          <Property Name="Mat_Id" Type="Int32" Nullable="false" />
+          <Property Name="Mat_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mat_Carrera_Id" Type="Int32" Nullable="false" />
+          <Property Name="Mat_Area_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Materia_Area" FromRole="Materia" ToRole="Area" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Materia_Carrera" FromRole="Materia" ToRole="Carrera" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_Grupo_Materia" FromRole="Materia" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="Prf_Id" />
+          </Key>
+          <Property Name="Prf_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prf_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prf_Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prf_Area_Id" Type="Int32" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Profesor_Area" FromRole="Profesor" ToRole="Area" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_Grupo_Profesor" FromRole="Profesor" ToRole="Grupo" />
+        </EntityType>
+        <Association Name="FK_Alumno_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Car_Id" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="Al_Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Alumno">
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="Al_Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Ins_Alumno_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="Mat_Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Area_Id" />
+            </Principal>
+            <Dependent Role="Profesor">
+              <PropertyRef Name="Prf_Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Car_Id" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="Mat_Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Mat_Id" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="Grp_Materia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="Prf_Id" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="Grp_Profesor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="Grp_Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Ins_Grupo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CursoEscolarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" />
+          <EntitySet Name="Area" EntityType="Self.Area" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" />
+          <EntitySet Name="Profesor" EntityType="Self.Profesor" />
+          <AssociationSet Name="FK_Alumno_Carrera" Association="Self.FK_Alumno_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Alumno" Association="Self.FK_Inscripcion_Alumno">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Area" Association="Self.FK_Materia_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Area" Association="Self.FK_Profesor_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Profesor" EntitySet="Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Carrera" Association="Self.FK_Materia_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Materia" Association="Self.FK_Grupo_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Profesor" Association="Self.FK_Grupo_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Grupo" Association="Self.FK_Inscripcion_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cursowebModelStoreContainer" CdmEntityContainer="CursoEscolarEntities">
+          <EntitySetMapping Name="Alumno">
+            <EntityTypeMapping TypeName="cursowebModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="Al_Id" ColumnName="Al_Id" />
+                <ScalarProperty Name="Al_Nombre" ColumnName="Al_Nombre" />
+                <ScalarProperty Name="Al_Apellido" ColumnName="Al_Apellido" />
+                <ScalarProperty Name="Al_Carrera_Id" ColumnName="Al_Carrera_Id" />
+                <ScalarProperty Name="Al_Semestre" ColumnName="Al_Semestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="cursowebModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Area_Nombre" ColumnName="Area_Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carrera">
+            <EntityTypeMapping TypeName="cursowebModel.Carrera">
+              <MappingFragment StoreEntitySet="Carrera">
+                <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
+                <ScalarProperty Name="Car_Nombre" ColumnName="Car_Nombre" />
+                <ScalarProperty Name="Car_Nivel" ColumnName="Car_Nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo">
+            <EntityTypeMapping TypeName="cursowebModel.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="Grp_Id" ColumnName="Grp_Id" />
+                <ScalarProperty Name="Grp_Materia_Id" ColumnName="Grp_Materia_Id" />
+                <ScalarProperty Name="Grp_Profesor_Id" ColumnName="Grp_Profesor_Id" />
+                <ScalarProperty Name="Grp_Turno" ColumnName="Grp_Turno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inscripcion">
+            <EntityTypeMapping TypeName="cursowebModel.Inscripcion">
+              <MappingFragment StoreEntitySet="Inscripcion">
+                <ScalarProperty Name="Ins_Id" ColumnName="Ins_Id" />
+                <ScalarProperty Name="Ins_Alumno_Id" ColumnName="Ins_Alumno_Id" />
+                <ScalarProperty Name="Ins_Grupo_Id" ColumnName="Ins_Grupo_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materia">
+            <EntityTypeMapping TypeName="cursowebModel.Materia">
+              <MappingFragment StoreEntitySet="Materia">
+                <ScalarProperty Name="Mat_Id" ColumnName="Mat_Id" />
+                <ScalarProperty Name="Mat_Nombre" ColumnName="Mat_Nombre" />
+                <ScalarProperty Name="Mat_Carrera_Id" ColumnName="Mat_Carrera_Id" />
+                <ScalarProperty Name="Mat_Area_Id" ColumnName="Mat_Area_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesor">
+            <EntityTypeMapping TypeName="cursowebModel.Profesor">
+              <MappingFragment StoreEntitySet="Profesor">
+                <ScalarProperty Name="Prf_Id" ColumnName="Prf_Id" />
+                <ScalarProperty Name="Prf_Nombre" ColumnName="Prf_Nombre" />
+                <ScalarProperty Name="Prf_Apellido" ColumnName="Prf_Apellido" />
+                <ScalarProperty Name="Prf_Area_Id" ColumnName="Prf_Area_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
