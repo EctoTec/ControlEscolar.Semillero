@@ -169,6 +169,8 @@
     <Compile Include="Controllers\EmmanuelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\Materias\AreaController.cs" />
+    <Compile Include="Controllers\Materias\CarreraController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
     <Compile Include="Controllers\Josue.cs" />
