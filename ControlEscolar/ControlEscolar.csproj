@@ -131,14 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\BundleConfig2.cs" />
-    <Compile Include="App_Start\BundleConfig3.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\FilterConfig2.cs" />
-    <Compile Include="App_Start\FilterConfig3.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\RouteConfig2.cs" />
-    <Compile Include="App_Start\RouteConfig3.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -175,6 +169,8 @@
     <Compile Include="Controllers\EmmanuelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\Materias\AreaController.cs" />
+    <Compile Include="Controllers\Materias\CarreraController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
     <Compile Include="Controllers\Josue.cs" />
@@ -304,6 +300,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Daniela\" />
+    <Folder Include="Views\Paco\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
