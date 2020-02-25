@@ -14,5 +14,13 @@ namespace ControlEscolar.Controllers
 
             return View();
         }
+
+
+        public ActionResult Grupos()
+        {
+            ViewBag.Title = "Grupos";
+
+            return View();
+        }
     }
 }
