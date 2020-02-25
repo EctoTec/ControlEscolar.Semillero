@@ -13,5 +13,9 @@ namespace ControlEscolar.Controllers
         {
             return View();
         }
+        public ActionResult Materia()
+        {
+            return View();
+        }
     }
 }
