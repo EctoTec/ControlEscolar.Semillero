@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AntonioController.cs" />
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\EmmanuelController.cs" />
+    <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
@@ -296,10 +297,12 @@
     <Content Include="Views\Paco\Index.cshtml" />
     <Content Include="Views\Ricardo\Index.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
+    <Content Include="Views\Home\Grupos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Grupos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

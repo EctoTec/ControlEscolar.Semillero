@@ -6,16 +6,10 @@ using System.Web.Mvc;
 
 namespace ControlEscolar.Controllers
 {
-    public class HomeController : Controller
+    public class GruposController : Controller
     {
+        // GET: Grupos
         public ActionResult Index()
-        {
-            ViewBag.Title = "Home Page";
-
-            return View();
-        }
-        
-        public ActionResult Grupos()
         {
             ViewBag.Title = "Grupos";
             return View();
