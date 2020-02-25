@@ -13,5 +13,10 @@ namespace ControlEscolar.Controllers
         {
             return View();
         }
+
+        public ActionResult Profesores()
+        {
+            return View();
+        }
     }
 }
