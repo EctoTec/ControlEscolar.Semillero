@@ -206,6 +206,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Grupos.cs" />
     <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Grupo.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
