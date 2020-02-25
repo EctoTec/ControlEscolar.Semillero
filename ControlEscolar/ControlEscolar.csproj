@@ -172,7 +172,6 @@
     <Compile Include="Controllers\AntonioController.cs" />
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\EmmanuelController.cs" />
-    <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
