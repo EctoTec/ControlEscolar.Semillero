@@ -169,10 +169,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AlumnosController.cs" />
+    <Compile Include="Controllers\DanielController.cs" />
     <Compile Include="Controllers\AntonioController.cs" />
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\EmmanuelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
     <Compile Include="Controllers\Josue.cs" />
@@ -204,6 +206,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Grupo.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
     </Compile>
@@ -290,9 +293,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Antonio\Materia.cshtml" />
-    <Content Include="Views\Josue\Josue.cshtml" />
     <Content Include="Views\Alumnos\Index.cshtml" />
+    <Content Include="Views\Antonio\Materia.cshtml" />
+    <Content Include="Views\Daniel\Inscribir.cshtml" />
+    <Content Include="Views\Josue\Josue.cshtml" />
     <Content Include="Views\Ricardo\Profesores.cshtml" />
     <Content Include="Views\Home\Grupos.cshtml" />
   </ItemGroup>
