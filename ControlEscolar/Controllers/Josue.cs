@@ -6,14 +6,10 @@ using System.Web.Mvc;
 
 namespace ControlEscolar.Controllers
 {
-    public class AntonioController : Controller
+    public class Josue : Controller
     {
-        // GET: Antonio
+        // GET: Josue
         public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Materia()
         {
             return View();
         }

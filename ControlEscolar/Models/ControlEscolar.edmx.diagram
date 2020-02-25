@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e27265d3a18f49d6a7f014a23a7f39dd" Name="Diagram1">
+        <EntityTypeShape EntityType="cursowebModel.Alumno" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Area" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Carrera" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Grupo" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Inscripcion" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Materia" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cursowebModel.Profesor" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="cursowebModel.FK_Alumno_Carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Inscripcion_Alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Materia_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Profesor_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Materia_Carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Grupo_Materia" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Grupo_Profesor" ManuallyRouted="false" />
+        <AssociationConnector Association="cursowebModel.FK_Inscripcion_Grupo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
