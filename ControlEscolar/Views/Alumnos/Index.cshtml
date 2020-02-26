@@ -1,18 +1,31 @@
-﻿<h2>Alumnos</h2>
+﻿<!--ENCABEZADO-->
+<h2>Alumnos</h2>
 
-<form class="form-inline active-cyan-4">
-    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
-            aria-label="Search">
-    <i class="fas fa-search" aria-hidden="true"></i>
-</form>
+<!--BUSCAR-->
+<div>
+    <form class="form-inline active-cyan-4">
+        <div class="input-group">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+                   aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="input-group-btn glyphicon-object-align-top">-->
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>
+    </form>
+</div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
+<!--AGREGAR-->
+<div class="col-sm-12 text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
+</div>
 
+<!--MODAL-->
 <div class="modal" id ="modalAlumnos" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Agregar Alumno</h5>
+                <h5 class="modal-title text-center">Agregar Alumno</h5>
                 <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>-->
@@ -22,22 +35,37 @@
                 <form>
                     <div class="form-group">
                         <label for="formGroupId">Id</label>
-                        <input type="text" class="form-control" id="Id">
+                        <input type="number" class="form-control" id="Id">
                     </div>
                     <div class="form-group">
                         <label for="formGroupNombre">Nombre</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2">
+                        <input type="text" class="form-control" id="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupApellidos">Apellidos</label>
+                        <input type="text" class="form-control" id="Apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupCarrera">Carrera</label>
+                        <select class="form-control" id="Carrera">
+                            <option selected>Opciones...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupSemestre">Semestre</label>
+                        <input type="number" class="form-control" id="Semestre" min="1" max="10">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
+<!--TABLA CON DATOS-->
 <table class="table">
     <thead class="thead-dark">
         <tr>
