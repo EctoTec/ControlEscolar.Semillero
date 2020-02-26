@@ -204,6 +204,7 @@
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Entidades\Materia.cs" />
+    <Compile Include="Models\Entidades\Profesores.cs" />
     <Compile Include="Models\Grupo.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
     </Compile>
