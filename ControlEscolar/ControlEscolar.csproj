@@ -168,7 +168,10 @@
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\EmmanuelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HéctorController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\Materias\AreaController.cs" />
+    <Compile Include="Controllers\Materias\CarreraController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
     <Compile Include="Controllers\Josue.cs" />
@@ -201,6 +204,7 @@
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Entidades\Materia.cs" />
+    <Compile Include="Models\Entidades\Profesores.cs" />
     <Compile Include="Models\Grupo.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
     </Compile>
@@ -291,6 +295,10 @@
     <Content Include="Views\Antonio\Materia.cshtml" />
     <Content Include="Views\Daniel\Inscribir.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
+    <Content Include="Views\Ricardo\Profesores.cshtml" />
+    <Content Include="Views\Antonio\Materia.cshtml" />
+    <Content Include="Views\Josue\Josue.cshtml" />
+    <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Views\Ricardo\Profesores.cshtml" />
   </ItemGroup>
   <ItemGroup>
