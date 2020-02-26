@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ControlEscolar.Models;
+using ControlEscolar.Models.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +18,40 @@ namespace ControlEscolar.Controllers
 
         public ActionResult Inscribir()
         {
-            return View();
+            List<c_Materia> lst;
+            using (CursoEscolarEntities ControlEscolar = new CursoEscolarEntities())
+            {
+                lst = (from d in ControlEscolar.Materia
+                       select new c_Materia
+                       {
+                           Id = d.Mat_Id,
+                           Nombre = d.Mat_Nombre
+                       }).ToList();
+            }
+            return View(lst);
         }
+
+        [HttpPost]
+        public ActionResult Inscribir(c_Materia model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (CursoEscolarEntities ControlEscolar = new CursoEscolarEntities())
+                    {
+                        var oLista = new Materia();
+                        oLista.Mat_Id = model.Id;
+                        oLista.Mat_Nombre = model.Nombre;
+                    }
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }   
 }
