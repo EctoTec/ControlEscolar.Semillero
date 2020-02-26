@@ -30,7 +30,7 @@ namespace ControlEscolar.Controllers.Materias
             Boolean guardar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
-
+                
                 Models.Area area1 = new Models.Area { Area_Nombre = area.Nombre };
                 contexto.Area.Add(area1);
                 contexto.SaveChanges();
