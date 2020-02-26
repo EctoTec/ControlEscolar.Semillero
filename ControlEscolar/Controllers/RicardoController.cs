@@ -16,6 +16,7 @@ namespace ControlEscolar.Controllers
 
         public ActionResult Profesores()
         {
+            ViewBag.Title = "Profesores";
             return View();
         }
     }

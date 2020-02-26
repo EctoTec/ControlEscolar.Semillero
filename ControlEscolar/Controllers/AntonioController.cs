@@ -13,6 +13,7 @@ namespace ControlEscolar.Controllers
         {
             return View();
         }
+        [Route("Materia")]
         public ActionResult Materia()
         {
             return View();
