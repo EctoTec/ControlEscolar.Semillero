@@ -19,9 +19,9 @@ namespace ControlEscolar.Controllers
         public ActionResult Inscribir()
         {
             List<c_Materia> lst;
-            using (CursoEscolarEntities ControlEscolar = new CursoEscolarEntities())
+            using (CursoEscolarEntities db = new CursoEscolarEntities())
             {
-                lst = (from d in ControlEscolar.Materia
+                lst = (from d in db.Materia
                        select new c_Materia
                        {
                            Id = d.Mat_Id,
