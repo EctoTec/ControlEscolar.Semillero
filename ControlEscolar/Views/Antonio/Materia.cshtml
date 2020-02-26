@@ -3,9 +3,50 @@
     ViewBag.Title = "Materia";
 }
 
-<div class="container h1 text-center">
-    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
-</div>
+    <div class="container text-center">
+        <form>
+            <div class="form-group col-sm-12">
+                <label for="Nombre_Mat">Materia</label>
+                <input id="Nombre_Mat" type="text" class="form-control" placeholder="Materia">
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="Carrera_Mat">Carrera</label>
+                <select id="Carrera_Mat" class="form-control col-sm-11">
+                    <option value="" disabled>Elige una Carrera</option>
+                </select>
+                <button class="btn btn-success col-sm-1" data-toggle="modal" data-target="#Ag_Materia">Agregar</button>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="Area_Mat">Area</label>
+                <select id="Area_Mat" class="form-control col-sm-11">
+                    <option value="" disabled>Elige una Area</option>
+                </select>
+                <button class="btn btn-success col-sm-1" data-toggle="modal" data-target="#Ag_Materia">Agregar</button>
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
+    </div>
 
 <table class="table">
     <thead>
