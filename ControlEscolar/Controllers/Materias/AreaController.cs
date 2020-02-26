@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ControlEscolar.Models.Entidades;
+using ControlEscolar.Models;
 
 namespace ControlEscolar.Controllers.Materias
 {
@@ -23,8 +25,18 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // POST: api/Area
-        public void Post([FromBody]string value)
+        public bool Post(c_Area area)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                
+                Area area1 = new Area { Area_Nombre = area.Nombre };
+                contexto.Area.Add(area1);
+                contexto.SaveChanges();
+                
+            }
+            return guardar;
         }
 
         // PUT: api/Area/5

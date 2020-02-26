@@ -3,14 +3,14 @@
     ViewBag.Title = "Inscribir";
 }
 
-<h2>Inscribete</h2>
+@*<h2>Inscribete</h2>*@
 
-<p> Bienvenido Alumno, Favor de registra tus datos en los recuadros siguientes: </p>
-
-
+@*<p> Bienvenido Alumno, Favor de registra tus datos en los recuadros siguientes: </p>*@
 
 
-<table>
+
+
+@*@<table>
     <tr>
         <th>
             Id
@@ -28,4 +28,21 @@
             Semestre
         </th>
     </tr>
-</table>
+</table>*@
+
+<div class="container">
+    <div class="row text-center"><h2>Inscripción</h2></div>
+
+    <div class="row">
+        <form action="/" method="post" class="form-inline">
+            <div class="form-group">
+                <label for="formLabelMatricula">Ingresa tu matricula: </label>
+                <input type="number" name="matricula" value="Matricula" />
+                <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+
+
+</div>
