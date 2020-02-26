@@ -1,55 +1,25 @@
-﻿
-@{
-    ViewBag.Title = "Inscribir";
-}
+﻿@Model  List<ControlEscolar.Models.Entidades.Materia>
 
-@*<h2>Inscribete</h2>*@
+    <div class="container">
+        <div class="row text-center"><h2>Inscripción</h2></div>
 
-@*<p> Bienvenido Alumno, Favor de registra tus datos en los recuadros siguientes: </p>*@
+        <div class="row">
+            <form action="/" method="post" class="form-inline">
+                <div class="form-group">
+                    <label for="formLabelMatricula">Ingresa tu matricula: </label>
+                    <input type="number" name="matricula" value="Matricula" />
+                    <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                </div>
+            </form>
+        </div>
 
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action">Nombre</button>
+            @foreach (var oElement in Model)
+            {
+                <button type="button" class="list-group-item list-group-item-action">@oElement.Nombre</button>
+                <button type="button" class="list-group-item list-group-item-action">Nombre materia</button>
+            }
+        </div>
 
-
-
-@*@<table>
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Apellidos
-        </th>
-        <th>
-            Carrera
-        </th>
-        <th>
-            Semestre
-        </th>
-    </tr>
-</table>*@
-
-<div class="container">
-    <div class="row text-center"><h2>Inscripción</h2></div>
-
-    <div class="row">
-        <form action="/" method="post" class="form-inline">
-            <div class="form-group">
-                <label for="formLabelMatricula">Ingresa tu matricula: </label>
-                <input type="number" name="matricula" value="Matricula" />
-                <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
-            </div>
-        </form>
     </div>
-
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action">Nombre</button>
-        @foreach (var oElement in Model)
-        {
-            <button type="button" class="list-group-item list-group-item-action">@oElement.Nombre</button>
-            <button type="button" class="list-group-item list-group-item-action">Nombre materia</button>
-        }
-    </div>
-
-</div>
