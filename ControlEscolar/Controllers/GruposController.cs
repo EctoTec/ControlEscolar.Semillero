@@ -22,6 +22,8 @@ namespace ControlEscolar.Controllers
         /// https://hdeleon.net/crear-api-con-c-net-y-llenar-un-select-con-solicitud-hecha-con-vanilla-javascript/
         /// </summary>
         /// <returns></returns>
+        
+        /*
         public IEnumerable<Grupos> Get()
         {
             using (Models.CursoEscolarEntities db = new Models.CursoEscolarEntities())
@@ -37,5 +39,6 @@ namespace ControlEscolar.Controllers
                 return lst;
             }
         }
+        */
     }
 }
