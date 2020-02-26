@@ -32,6 +32,7 @@ namespace ControlEscolar.Controllers.Materias
                 Carrera carrera1 = new Carrera { Car_Nombre = carrera.Nombre, Car_Nivel = carrera.Nivel };
                 contexto.Carrera.Add(carrera1);
                 contexto.SaveChanges();
+                guardar = true;
             }
             return guardar;
         }

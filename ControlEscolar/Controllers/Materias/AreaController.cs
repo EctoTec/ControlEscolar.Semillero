@@ -34,6 +34,7 @@ namespace ControlEscolar.Controllers.Materias
                 Models.Area area1 = new Models.Area { Area_Nombre = area.Nombre };
                 contexto.Area.Add(area1);
                 contexto.SaveChanges();
+                guardar = true;
                 
             }
             return guardar;
