@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ControlEscolar.Models.Entidades;
+using ControlEscolar.Models;
 
 namespace ControlEscolar.Controllers.Materias
 {
@@ -22,8 +24,16 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // POST: api/Carrera
-        public void Post([FromBody]string value)
+        public bool Post(c_Carrera carrera)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Carrera carrera1 = new Carrera { Car_Nombre = carrera.Nombre, Car_Nivel = carrera.Nivel };
+                contexto.Carrera.Add(carrera1);
+                contexto.SaveChanges();
+            }
+            return guardar;
         }
 
         // PUT: api/Carrera/5

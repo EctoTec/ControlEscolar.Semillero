@@ -5,10 +5,22 @@ using System.Web;
 
 namespace ControlEscolar.Models.Entidades
 {
-    public class Materia
+    public class c_Materia
     {
+        public int Id { get; set; }
         public String Nombre { get; set; }
         public int Carrera { get; set; }
         public int Area { get; set; }
+    }
+    public class c_Area
+    {
+        public int Id { get; set; }
+        public String Nombre { get; set; }
+    }
+    public class c_Carrera
+    {
+        public int Id { get; set; }
+        public String Nombre { get; set; }
+        public String Nivel { get; set; }
     }
 }
