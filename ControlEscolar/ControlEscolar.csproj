@@ -205,6 +205,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Alumnos.cs" />
     <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Entidades\Profesores.cs" />
     <Compile Include="Models\Grupo.cs">
@@ -387,6 +388,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Antonio\Materia.cshtml" />
     <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Views\Daniel\Inscribir.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
@@ -405,6 +407,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Héctor\Index.cshtml" />
     <Content Include="Views\Ricardo\Profesores.cshtml" />
+    <Content Include="Scripts\Funciones.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -452,6 +455,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

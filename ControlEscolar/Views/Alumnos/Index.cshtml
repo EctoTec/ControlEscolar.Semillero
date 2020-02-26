@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<!--ENCABEZADO-->
 <h2>Alumnos</h2>
 
@@ -8,7 +9,91 @@
             <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
                    aria-label="Search">
             <i class="fas fa-search" aria-hidden="true"></i>
-            <span class="input-group-btn glyphicon-object-align-top">-->
+            <span class="input-group-btn glyphicon-object-align-top">
+                -->
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>
+    </form>
+</div>
+
+<!--AGREGAR-->
+<div class="col-sm-12 text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
+</div>
+
+<!--MODAL-->
+<div class="modal" id="modalAlumnos" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Agregar Alumno</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--<p>Modal body text goes here.</p>-->
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupId">Id</label>
+                        <input type="number" class="form-control" id="Id">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupNombre">Nombre</label>
+                        <input type="text" class="form-control" id="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupApellidos">Apellidos</label>
+                        <input type="text" class="form-control" id="Apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupCarrera">Carrera</label>
+                        <select class="form-control" id="Carrera">
+                            <option selected>Opciones...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupSemestre">Semestre</label>
+                        <input type="number" class="form-control" id="Semestre" min="1" max="10">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="GuardarDatos();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    @Scripts.Render("~/bundles/Funciones")
+
+<!--TABLA CON DATOS-->
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Carrera</th>
+            <th scope="col">Semestre</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+=======
+﻿<!--ENCABEZADO-->
+<h2>Alumnos</h2>
+
+<!--BUSCAR-->
+<div>
+    <form class="form-inline active-cyan-4">
+        <div class="input-group">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+                   aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="input-group-btn glyphicon-object-align-top">
                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
             </span>
         </div>
@@ -33,10 +118,10 @@
             <div class="modal-body">
                 <!--<p>Modal body text goes here.</p>-->
                 <form>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="formGroupId">Id</label>
                         <input type="number" class="form-control" id="Id">
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="formGroupNombre">Nombre</label>
                         <input type="text" class="form-control" id="Nombre">
@@ -79,4 +164,5 @@
     <tbody>
         
     </tbody>
+>>>>>>> bdd4daffb257d49b76a9fca60879dbfbe25d44c1
 </table>
