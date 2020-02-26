@@ -13,11 +13,6 @@ namespace ControlEscolar.Controllers
         // GET: Daniel
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Inscribir()
-        {
             List<c_Materia> lst;
             using (CursoEscolarEntities db = new CursoEscolarEntities())
             {
@@ -29,6 +24,11 @@ namespace ControlEscolar.Controllers
                        }).ToList();
             }
             return View(lst);
+        }
+
+        public ActionResult Inscribir()
+        {
+            return View();
         }
 
         [HttpPost]
