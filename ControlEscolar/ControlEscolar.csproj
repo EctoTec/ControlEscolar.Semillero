@@ -203,6 +203,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Alumnos.cs" />
     <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Entidades\Profesores.cs" />
     <Compile Include="Models\Grupo.cs">
@@ -291,7 +292,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Views\Antonio\Materia.cshtml" />
     <Content Include="Views\Daniel\Inscribir.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
