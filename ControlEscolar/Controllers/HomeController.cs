@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ControlEscolar.Models;
+using ControlEscolar.Models.Entidades;
 
 namespace ControlEscolar.Controllers
 {
@@ -17,7 +19,9 @@ namespace ControlEscolar.Controllers
         
         public ActionResult Grupos()
         {
-            ViewBag.Title = "Grupos";
+            List<Grupos> Grupos = new List<Grupos>();
+
+            
             return View();
         }
     }
