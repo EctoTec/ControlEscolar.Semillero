@@ -8,26 +8,27 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <!--Barra de navegación-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+        <div class="container"> 
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 @Html.ActionLink("Control Escolar", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Alumnos", "Index", "Alumnos", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Profesores", "Profesores", "Ricardo", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Materias", "Materia", "Antonio", new { area = ""}, null)</li>
-                    <li>@Html.ActionLink("Inscripciones", "Inscribir", "Daniel", new { area = ""}, null)</li>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Alumnos", "Index", "Alumnos", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("Profesores", "Profesores", "Ricardo", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("Materias", "Materia", "Antonio", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("Inscripciones", "Inscribir", "Daniel", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li class="nav-item">@Html.ActionLink("Grupos", "Grupos", "Home", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

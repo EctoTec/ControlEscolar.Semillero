@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Grupos";
+}
+
+<center>
+    <h1>Grupos</h1>
+</center>
+
+    <div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6">
+        <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Grupo">Nuevo Grupo</button>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Materia</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">Turno</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="Ag_Grupo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Agregar Grupo</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group col-sm-12">
+                            <label>Materia</label>
+                            <select class="form-control">
+                                <option value="">Elige una materia</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Profesor</label>
+                            <select class="form-control">
+                                <option value="">Elige un Maestro</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Turno</label>
+                            <select class="form-control">
+                                <option value="">Elige un turno</option>
+                                <option value="M">Matutino</option>
+                                <option value="V">Vespertino</option>
+                                <option value="N">Nocturno</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>

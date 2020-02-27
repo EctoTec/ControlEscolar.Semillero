@@ -16,43 +16,6 @@ namespace ControlEscolar.Controllers
             return View();
         }
 
-        //public ActionResult Inscribir()
-        //{
-        //    List<c_Materia> lst;
-        //    using(CursoEscolarEntities db = new CursoEscolarEntities())
-        //    {
-        //        lst = (from d in db.Materia
-        //               select new c_Materia
-        //               {
-        //                   Id = d.Mat_Id,
-        //                   Nombre = d.Mat_Nombre
-        //               }).ToList();
-        //    }
-        //    return View(lst);
-        //}
-
-        //[HttpPost]
-        //public ActionResult Inscribir(c_Materia model)
-        //{
-        //    try
-        //    {
-        //        if(ModelState.IsValid)
-        //        {
-        //            using(CursoEscolarEntities db = new CursoEscolarEntities())
-        //            {
-        //                var oLista = new Materia();
-        //                oLista.Mat_Id = model.Id;
-        //                oLista.Mat_Nombre = model.Nombre;
-                        
-
-        //            }
-        //        }
-        //        return View(model);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+       
     }
 }
