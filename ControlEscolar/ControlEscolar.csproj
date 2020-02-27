@@ -388,10 +388,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Antonio\Materia.cshtml" />
     <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Views\Daniel\Inscribir.cshtml" />
-    <Content Include="Views\Josue\Josue.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -405,6 +403,8 @@
     <Content Include="Views\Héctor\Index.cshtml" />
     <Content Include="Views\Ricardo\Profesores.cshtml" />
     <Content Include="Scripts\Funciones.js" />
+    <Content Include="Views\Antonio\Materia.cshtml" />
+    <Content Include="Views\Josue\Josue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
