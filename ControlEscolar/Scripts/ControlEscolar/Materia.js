@@ -5,6 +5,27 @@ let input_C_Nombre = document.getElementById("C_Nombre");
 let input_C_Nivel = document.getElementById("C_Nivel");
 let input_A_Nombre = document.getElementById("A_Nombre");
 
+let input_M_Carrera = document.getElementById("Carrera_Mat");
+let input_M_Area = document.getElementById("Area_Mat");
+
+let drawSelectCarrera = (arreglo) => {
+    let content = input_M_Carrera.innerHTML;
+    for(i of arreglo) {
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    input_M_Carrera.innerHTML = content;
+}
+
+let drawSelectArea = (arreglo) => {
+    let content = input_M_Area.innerHTML;
+    for (i of arreglo) {
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    input_M_Area.innerHTML = content;
+}
+
 btn_Add_Area.onclick = () => {
     $.ajax({
         type: "POST",
@@ -44,6 +65,7 @@ window.onload = () => {
         dataType: "JSON",
         success: (response) => {
             console.log(response);
+            drawSelectArea(response);
             return response;
         }
     });
@@ -53,6 +75,7 @@ window.onload = () => {
         dataType: "JSON",
         success: (response) => {
             console.log(response);
+            drawSelectCarrera(response);
             return response;
         }
     });
