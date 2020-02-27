@@ -3,7 +3,7 @@
 function getDatos() {
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open('GET', 'http://localhost:44387/api/Carrera', true);
+    xhttp.open('GET', 'http://localhost:44387/api/Materia', true);
 
     xhttp.send();
 
