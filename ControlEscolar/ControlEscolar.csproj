@@ -274,6 +274,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ControlEscolar\Grupos.js" />
+    <Content Include="Scripts\ControlEscolar\Inscripcion.js" />
     <Content Include="Scripts\ControlEscolar\Materia.js" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
