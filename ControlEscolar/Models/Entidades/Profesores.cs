@@ -5,12 +5,12 @@ using System.Web;
 
 namespace ControlEscolar.Models.Entidades
 {
-    public class Profesores
+    public class c_Profesores
     {
-        public int Prf_id { get; set; }
-        public string Prf_Nombre { get; set; }
-        public string Prf_Apellido { get; set; }
-        public int Prf_Area { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int Area { get; set; }
     }
     public class Area
     {

@@ -28,6 +28,9 @@ namespace ControlEscolar
 
             bundles.Add(new ScriptBundle("~/bundles/Materias").Include(
                       "~/Scripts/ControlEscolar/Materia.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Profesores").Include(
+                      "~/Scripts/ControlEscolar/Profesor.js"));
         }
     }
 }
