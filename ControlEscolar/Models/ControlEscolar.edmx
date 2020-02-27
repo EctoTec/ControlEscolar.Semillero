@@ -51,7 +51,7 @@
           <Key>
             <PropertyRef Name="Mat_Id" />
           </Key>
-          <Property Name="Mat_Id" Type="int" Nullable="false" />
+          <Property Name="Mat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mat_Nombre" Type="nvarchar" MaxLength="50" />
           <Property Name="Mat_Carrera_Id" Type="int" Nullable="false" />
           <Property Name="Mat_Area_Id" Type="int" Nullable="false" />
