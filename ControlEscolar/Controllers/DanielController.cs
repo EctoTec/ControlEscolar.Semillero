@@ -45,7 +45,7 @@ namespace ControlEscolar.Controllers
                         oLista.Mat_Nombre = model.Nombre;
                     }
                 }
-                return View(model);
+                return ViewBag.model = model;
             }
             catch (Exception ex)
             {
