@@ -14,8 +14,8 @@ btn_Add_Area.onclick = () => {
         },
         dataType: "JSON",
         success: (response) => {
-            return response;
             $('#Ag_Area').modal('hide');
+            return response;
         }
     });
 }
@@ -30,9 +30,30 @@ btn_Add_Carrera.onclick = () => {
         },
         dataType: "JSON",
         success: (response) => {
-            return response;
             $('#Ag_Carrera').modal('hide');
+            return response;
         }
     });
 
+}
+
+window.onload = () => {
+    $.ajax({
+        type: "GET",
+        url: "/api/Area",
+        dataType: "JSON",
+        success: (response) => {
+            console.log(response);
+            return response;
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: "/api/Carrera",
+        dataType: "JSON",
+        success: (response) => {
+            console.log(response);
+            return response;
+        }
+    });
 }
