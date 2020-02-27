@@ -12,9 +12,21 @@ namespace ControlEscolar.Controllers.Materias
     public class AreaController : ApiController
     {
         // GET: api/Area
-        public IEnumerable<string> Get()
+        public c_Area[] Get()
         {
-            return new string[] { "value1", "value2" };
+            List<c_Area> LArea = new List<c_Area>();
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                foreach (Models.Area item in contexto.Area)
+                {
+                    LArea.Add(new c_Area()
+                    {
+                        Id = item.Area_Id,
+                        Nombre = item.Area_Nombre
+                    });
+                }
+            }
+            return LArea.ToArray();
         }
 
         // GET: api/Area/5
