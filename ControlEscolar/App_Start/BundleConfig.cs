@@ -24,6 +24,7 @@ namespace ControlEscolar
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/Funciones").Include(
           "~/Scripts/Funciones.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Materias").Include(
                       "~/Scripts/ControlEscolar/Materia.js"));
         }

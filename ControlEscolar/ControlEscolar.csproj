@@ -392,9 +392,6 @@
     <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Views\Daniel\Inscribir.cshtml" />
     <Content Include="Views\Josue\Josue.cshtml" />
-    <Content Include="Views\Antonio\Materia.cshtml" />
-    <Content Include="Views\Josue\Josue.cshtml" />
-    <Content Include="Views\Alumnos\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -446,7 +443,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63915</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44387/</IISUrl>
+          <IISUrl>http://localhost:44387/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
