@@ -169,6 +169,7 @@
     <Compile Include="Controllers\AntonioController.cs" />
     <Compile Include="Controllers\DanielaController.cs" />
     <Compile Include="Controllers\EmmanuelController.cs" />
+    <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HéctorController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
@@ -176,7 +177,6 @@
     <Compile Include="Controllers\Materias\CarreraController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
-    <Compile Include="Controllers\Josue.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,6 +205,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\Grupos.cs" />
     <Compile Include="Models\Entidades\Alumnos.cs" />
     <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Entidades\Profesores.cs" />
@@ -272,6 +273,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ControlEscolar\Grupos.js" />
     <Content Include="Scripts\ControlEscolar\Materia.js" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
