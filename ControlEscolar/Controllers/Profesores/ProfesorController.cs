@@ -24,7 +24,19 @@ namespace ControlEscolar.Controllers.Profesores
             return guardar;
         }
 
-        
+        public bool DELETE(int Prf_Id)
+        {
+            Boolean eliminar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var delTabla = contexto.Profesor.Find(Prf_Id);
+                contexto.Profesor.Remove(delTabla);
+                contexto.SaveChanges();
+            }
+            return eliminar;
+        }
+
+
         public tab_Profesores[] GET()
         {
             List<tab_Profesores> LProf = new List<tab_Profesores>();
@@ -43,26 +55,7 @@ namespace ControlEscolar.Controllers.Profesores
             }
             return LProf.ToArray();
         }
-        /*
-        public c_Profesores[] GET()
-        {
-            List<c_Profesores> LProf = new List<c_Profesores>();
-            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
-            {
-                foreach (Models.Profesor item in contexto.Profesor)
-                {
-                    LProf.Add(new c_Profesores()
-                    {
-                        Id = item.Prf_Id,
-                        Nombre = item.Prf_Nombre,
-                        Apellido = item.Prf_Apellido,
-                        Area = item.Prf_Area_Id.Value
-                    });
-                }
-            }
-            return LProf.ToArray();
-        }
-        */
+        
 
 
     }
