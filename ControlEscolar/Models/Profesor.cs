@@ -9,6 +9,7 @@
 
 namespace ControlEscolar.Models
 {
+    using ControlEscolar.Models.Entidades;
     using System;
     using System.Collections.Generic;
     

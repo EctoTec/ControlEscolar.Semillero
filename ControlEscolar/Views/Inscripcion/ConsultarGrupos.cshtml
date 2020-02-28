@@ -5,23 +5,25 @@
 
 <h2>ConsultarGrupos</h2>
 
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Grupo</th>
+            <th>Profesor</th>
+            <th>Turno</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ControlEscolar.Models.Grupo grupo in Model)
+        {
             <tr>
-                <th>Grupo</th>
-                <th>Profesor</th>
-                <th>Turno</th>
+                <td><button id="gpoId" onclick="addGpo(@grupo.Grp_Id)" class="btn btn-primary" >@grupo.Grp_Id</button></td>
+                <td>@grupo.Grp_Profesor_Id</td>
+                <td>@grupo.Grp_Turno</td>
+                
             </tr>
-        </thead>
-        <tbody>
-            @foreach (ControlEscolar.Models.Grupo grupo in Model)
-            {
-                <tr>
-                    <td>@grupo.Grp_Id</td>
-                    <td>@grupo.Grp_Profesor_Id</td>
-                    <td>@grupo.Grp_Turno</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
+@Scripts.Render("~/bundles/Inscripcion")

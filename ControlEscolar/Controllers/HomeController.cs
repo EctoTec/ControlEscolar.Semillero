@@ -18,10 +18,7 @@ namespace ControlEscolar.Controllers
         }
         
         public ActionResult Grupos()
-        {
-            //List<Grupos> Grupos = new List<Grupos>();
-
-            
+        {   
             return View();
         }
     }
