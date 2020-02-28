@@ -8,8 +8,7 @@
             <div class="form-group">
                 <label for="formLabelMatricula">Ingresa tu matricula: </label>
                 <input type="number" name="matricula" value="Matricula" id="matricula"/>
-                <button type="button" class="btn btn-primary btn-sm" id="btn-enviar">Enviar</button>
-                @*<button type="button" class="btn btn-success" id="btn-mostrar">Mostrar</button>*@
+                <button type="button" class="btn btn-primary btn-sm" id="btn-enviar" onclick="window.location = '@Url.Content("~/Inscripcion/ConsultarMaterias/")' + $('#matricula').val()">Enviar</button>
             </div>
         </form>
     </div>

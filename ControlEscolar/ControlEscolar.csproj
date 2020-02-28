@@ -172,6 +172,7 @@
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HéctorController.cs" />
+    <Compile Include="Controllers\Inscripciones\InscripcionController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\Materias\AreaController.cs" />
     <Compile Include="Controllers\Materias\CarreraController.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\Profesor.cs">
       <DependentUpon>ControlEscolar.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\InscripcionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +412,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Inscripcion\ConsultarMaterias.cshtml" />
+    <Content Include="Views\Inscripcion\ConsultarGrupos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
