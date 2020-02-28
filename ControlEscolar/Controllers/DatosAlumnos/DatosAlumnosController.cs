@@ -17,7 +17,7 @@ namespace ControlEscolar.Controllers.DatosAlumnos
             List<c_DatosAlumnos> datosalumno = new List<c_DatosAlumnos>();
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
-                foreach(Models.Alumno item in contexto.Alumno)
+                foreach (Models.Alumno item in contexto.Alumno)
                 {
                     datosalumno.Add(new c_DatosAlumnos()
                     {
@@ -32,25 +32,24 @@ namespace ControlEscolar.Controllers.DatosAlumnos
             return datosalumno.ToArray();
         }
 
-        // GET: api/DatosAlumnos/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST: api/DatosAlumnos
-        public void Post([FromBody]string value)
+        public bool Post(c_DatosAlumnos al)
         {
-        }
-
-        // PUT: api/DatosAlumnos/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/DatosAlumnos/5
-        public void Delete(int id)
-        {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Alumno alumno = new Alumno
+                {
+                    Al_Nombre = al.Nombre,
+                    Al_Apellido = al.Apellidos,
+                    Al_Carrera_Id = al.Carrera,
+                    Al_Semestre = al.Semestres
+                };
+                contexto.Alumno.Add(alumno);
+                contexto.SaveChanges();
+                guardar = true;
+            }
+            return guardar;
         }
     }
 }
