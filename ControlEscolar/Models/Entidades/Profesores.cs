@@ -12,7 +12,7 @@ namespace ControlEscolar.Models.Entidades
         public string Apellido { get; set; }
         public int Area { get; set; }
     }
-    public class Area
+    public class c_AreaP
     {
         public int Id { get; set; }
         public String Nombre { get; set; }
