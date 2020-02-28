@@ -9,6 +9,23 @@ namespace ControlEscolar.Controllers.Grupos
 {
     public class GruposController : ApiController
     {
-        //POST: api/Grupo
+        // GET: api/Grupos
+        public d_Grupos[] Get()
+        {
+            List<d_Grupos> datosGrupo = new List<d_Grupos>();
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                foreach (Models.Grupo item in contexto.Grupo)
+                {
+                    datosGrupo.Add(new d_Grupos()
+                    {
+                        Materia = item.Grp_Materia_Id,
+                        Profesor = item.Grp_Profesor_Id,
+                        Turno = item.Grp_Turno
+                    });
+                }
+            }
+            return datosGrupo.ToArray();
+        }
     }
 }
