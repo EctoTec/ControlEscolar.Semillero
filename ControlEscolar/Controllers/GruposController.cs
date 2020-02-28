@@ -11,7 +11,7 @@ namespace ControlEscolar.Controllers.Grupos
     {
         //POST: api/Grupo
 
-        public bool Post(d_Grupos grupos)
+        /*public bool Post(d_Grupos grupos)
         {
             Boolean guardar = false;
             using(CursoEscolarEntities contexto = new CursoEscolarEntities())
@@ -27,7 +27,7 @@ namespace ControlEscolar.Controllers.Grupos
                 guardar = true;
             }
             return guardar;
-        }
+        }*/
 
     }
 }
