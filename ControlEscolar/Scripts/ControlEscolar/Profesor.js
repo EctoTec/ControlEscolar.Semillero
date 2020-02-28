@@ -10,6 +10,7 @@ let input_P_Area = document.getElementById("P_Area");
 let input_M_Area = document.getElementById("Area_Mat");
 let input_P_Table = document.getElementById("T_Prof_body_content");
 
+
 btn_Add_Profesor.onclick = () => {
     $.ajax({
         type: "POST",
@@ -41,7 +42,7 @@ let drawSelectArea = (arreglo) => {
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td></tr>' + i.Area + '</td></tr>';
+        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td></tr>';
         content = content + row;
     }
     input_P_Table.innerHTML = content;

@@ -3,6 +3,7 @@ using System.Web.Http;
 using ControlEscolar.Models.Entidades;
 using ControlEscolar.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ControlEscolar.Controllers.Profesores
 {
@@ -22,23 +23,27 @@ namespace ControlEscolar.Controllers.Profesores
             }
             return guardar;
         }
-        /*public c_Area[] Get()
+
+        
+        public tab_Profesores[] GET()
         {
-            List<c_Area> LArea = new List<c_Area>();
+            List<tab_Profesores> LProf = new List<tab_Profesores>();
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
-                foreach (Models.Area item in contexto.Area)
-                {
-                    LArea.Add(new c_Area()
-                    {
-                        Id = item.Area_Id,
-                        Nombre = item.Area_Nombre
-                    });
-                }
+                var query = from p in contexto.Profesor
+                            join a in contexto.Area on p.Prf_Area_Id equals a.Area_Id
+                            select new tab_Profesores
+                            {
+                                Id = p.Prf_Id,
+                                Nombre = p.Prf_Nombre,
+                                Apellido = p.Prf_Apellido,
+                                Area = a.Area_Nombre
+                            };
+                LProf = query.ToList();
             }
-            return LArea.ToArray();
-        }*/
-
+            return LProf.ToArray();
+        }
+        /*
         public c_Profesores[] GET()
         {
             List<c_Profesores> LProf = new List<c_Profesores>();
@@ -57,7 +62,7 @@ namespace ControlEscolar.Controllers.Profesores
             }
             return LProf.ToArray();
         }
-
+        */
 
 
     }
