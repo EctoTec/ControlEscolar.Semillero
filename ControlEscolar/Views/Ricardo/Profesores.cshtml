@@ -27,6 +27,12 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">Agregar</button>
     </div>
+    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+           aria-label="Search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">Agregar</button>
+
+    
 </form>
 
 
@@ -72,9 +78,11 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Área</th>
+            <th scope="col"></th>
         </tr>
     </thead>
-    <tbody id="T_Prof_body_content"></tbody>
+    <tbody id="T_Prof_body_content">
+    </tbody>
 </table>
 
 @Scripts.Render("~/bundles/Profesores")

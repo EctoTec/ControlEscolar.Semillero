@@ -4,8 +4,8 @@
 <div>
     <form class="form-inline active-cyan-4">
         <div class="input-group">
-            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
-                   aria-label="Search">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Matricula"
+                   aria-label="Search" id="inputBuscar" onkeyup="Buscar();">
             <i class="fas fa-search" aria-hidden="true"></i>
             <span class="input-group-btn glyphicon-object-align-top">
                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
@@ -68,7 +68,7 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Matricula</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Carrera</th>
@@ -77,4 +77,5 @@
     </thead>
     <tbody id="cuerpo_tabla"></tbody>
 </table>
+<br/>
 @Scripts.Render("~/bundles/Funciones")

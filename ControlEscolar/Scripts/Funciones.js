@@ -43,3 +43,24 @@ window.onload = () => {
         }
     });
 }
+
+function Buscar() {
+    var input, table, tr, td, i, valor;
+    input = document.getElementById("inputBuscar");
+    filter = input.value;
+    table = document.getElementsByClassName("table");
+    tr = document.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            valor = td.textContent || td.innerText;
+            if (valor.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            }
+            else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
