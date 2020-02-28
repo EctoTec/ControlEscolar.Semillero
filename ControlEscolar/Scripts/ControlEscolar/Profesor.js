@@ -44,6 +44,7 @@ let drawTableProfesor = (arreglo) => {
     for (i of arreglo) {
         let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td></tr>';
         content = content + row;
+        console.log(content);
     }
     input_P_Table.innerHTML = content;
 }
@@ -64,6 +65,7 @@ window.onload = () => {
         url: "/api/Profesor",
         dataType: "JSON",
         success: (response) => {
+            console.log(response);
             drawTableProfesor(response);
             return response;
         }
