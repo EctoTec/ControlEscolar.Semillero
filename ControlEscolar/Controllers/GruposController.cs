@@ -1,40 +1,33 @@
-﻿using ControlEscolar.Models;
-using System;
+﻿using System;
+using System.Web.Http;
+using ControlEscolar.Models.Entidades;
+using ControlEscolar.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
-namespace ControlEscolar.Controllers
+namespace ControlEscolar.Controllers.Grupos
 {
     public class GruposController : ApiController
     {
-        public class Grupos
-        {
-            public int Materia { get; set; }
-            public int Profesor { get; set; }
-            public String Turno { get; set; }
-        }
+        //POST: api/Grupo
 
-        /// <summary>
-        /// https://hdeleon.net/crear-api-con-c-net-y-llenar-un-select-con-solicitud-hecha-con-vanilla-javascript/
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Grupos> Get()
+        /*public bool Post(d_Grupos grupos)
         {
-            using (Models.CursoEscolarEntities db = new Models.CursoEscolarEntities())
+            Boolean guardar = false;
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
-                var lst = (from d in db.Grupo 
-                            select new Grupos
-                            {
-                            Materia = d.Grp_Materia_Id,
-                            Profesor = d.Grp_Profesor_Id,
-                            Turno = d.Grp_Turno
-                          }).ToList();
-
-                return lst;
+                AltaGrupo grupo1 = new AltaGrupo
+                {
+                    Grp_Materia_Id = grupos.Materia,
+                    Grp_Profesor_Id = grupos.Profesor,
+                    Grp_Turno = grupos.Turno
+                };
+                contexto.Grupo.Add(grupo1);
+                contexto.SaveChanges();
+                guardar = true;
             }
-        }
+            return guardar;
+        }*/
+
     }
 }

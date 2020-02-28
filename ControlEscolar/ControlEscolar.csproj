@@ -211,7 +211,7 @@
       <DependentUpon>ControlEscolar.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Entidades\DatosAlumnos.cs" />
-    <Compile Include="Models\Entidades\Grupos.cs" />
+    <Compile Include="Models\Entidades\AltaGrupos.cs" />
     <Compile Include="Models\Entidades\Alumnos.cs" />
     <Compile Include="Models\Entidades\Materia.cs" />
     <Compile Include="Models\Entidades\Profesores.cs" />
