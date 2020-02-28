@@ -1,27 +1,24 @@
-﻿function GuardarDatos() {
-    let isEmpty = false,
-        id = document.getElementById("Id").value,
-        nombre = document.getElementById("Nombre").value,
-        apellidos = document.getElementById("Apellidos").value;
-        carrera = document.getElementById("Carrera").value
-        semestre = document.getElementById("Semestre").value
-    if (nombre === "") {
-        alert("Nombre no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (apellidos === "") {
-        alert("Apellidos no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (carrera === "") {
-        alert("Carrera no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (semestre === "") {
-        alert("Semestre no puede estar vacio");
-        isEmpty = true;
-    }
-    return isEmpty;
+﻿let nombre = document.getElementById("Nombre");
+let apellidos = document.getElementById("Apellidos");
+let carrera = document.getElementById("Carrera");
+let semestre = document.getElementById("Semestre");
+
+let GuardarDatoss = () => {
+    $.ajax({
+        type: "POST",
+        url: "/api/DatosAlumnos",
+        data: {
+            "Nombre": nombre.value,
+            "Apellidos": apellidos.value,
+            "Carrera": carrera.value,
+            "Semestres": semestre.value
+        },
+        dataType: "JSON",
+        success: (response) => {
+            $('#modalAlumnos').modal('hide');
+            return response;
+        }
+    });
 }
 
 let table_body = document.getElementById("cuerpo_tabla");
@@ -45,4 +42,25 @@ window.onload = () => {
             return response;
         }
     });
+}
+
+function Buscar() {
+    var input, table, tr, td, i, valor;
+    input = document.getElementById("inputBuscar");
+    filter = input.value;
+    table = document.getElementsByClassName("table");
+    tr = document.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            valor = td.textContent || td.innerText;
+            if (valor.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            }
+            else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }

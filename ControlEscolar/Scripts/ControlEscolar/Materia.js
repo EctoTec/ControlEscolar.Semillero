@@ -59,38 +59,44 @@ btn_Add_Area.onclick = () => {
 }
 
 btn_Add_Materia.onclick = () => {
-    if(input_M_Area.value)
-    $.ajax({
-        type: "POST",
-        url: "/api/Materia",
-        data: {
-            "Nombre": input_M_Nombre.value,
-            "Carrera": input_M_Carrera.value,
-            "Area": input_M_Area.value
-        },
-        dataType: "JSON",
-        success: (response) => {
-            alert("Se ha agregado la materia satisfactoriamente");
-            return response;
-        }
-    });
+    if (input_M_Area.value !== "0" && input_M_Carrera.value !== "0" && input_M_Nombre !== "") {
+        $.ajax({
+            type: "POST",
+            url: "/api/Materia",
+            data: {
+                "Nombre": input_M_Nombre.value,
+                "Carrera": input_M_Carrera.value,
+                "Area": input_M_Area.value
+            },
+            dataType: "JSON",
+            success: (response) => {
+                alert("Se ha agregado la materia satisfactoriamente");
+                return response;
+            }
+        });
+    } else {
+        alert('Agrege todos los campos')
+    }
 }
 
 btn_Add_Carrera.onclick = () => {
-    $.ajax({
-        type: "POST",
-        url: "/api/Carrera",
-        data: {
-            "Nombre": input_C_Nombre.value,
-            "Nivel": input_C_Nivel.value
-        },
-        dataType: "JSON",
-        success: (response) => {
-            $('#Ag_Carrera').modal('hide');
-            return response;
-        }
-    });
-
+    if (input_C_Nivel.value !== "0" && input_C_Nombre !== "") {
+        $.ajax({
+            type: "POST",
+            url: "/api/Carrera",
+            data: {
+                "Nombre": input_C_Nombre.value,
+                "Nivel": input_C_Nivel.value
+            },
+            dataType: "JSON",
+            success: (response) => {
+                $('#Ag_Carrera').modal('hide');
+                return response;
+            }
+        });
+    } else {
+        alert('Agrege todos los campos')
+    }
 }
 
 window.onload = () => {
@@ -121,4 +127,23 @@ window.onload = () => {
             return response;
         }
     });
+}
+
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }
