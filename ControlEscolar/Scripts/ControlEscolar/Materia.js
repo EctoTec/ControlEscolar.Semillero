@@ -15,7 +15,7 @@ let input_M_Table = document.getElementById("T_body_content");
 let drawSelectCarrera = (arreglo) => {
     let content = input_M_Carrera.innerHTML;
     for(i of arreglo) {
-        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Carrera.innerHTML = content;
@@ -24,7 +24,7 @@ let drawSelectCarrera = (arreglo) => {
 let drawSelectArea = (arreglo) => {
     let content = input_M_Area.innerHTML;
     for (i of arreglo) {
-        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Area.innerHTML = content;
@@ -33,28 +33,33 @@ let drawSelectArea = (arreglo) => {
 let drawTableMateria = (arreglo) => {
     let content = input_M_Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Nombre + '</td><td>' + i.Nivel + '</td><td>' + i.Carrera + '</td></tr>';
+        let row = '<tr><td>' + i.Nombre + '</td><td>' + (i.Nivel=='L'?'Licenciatura':(i.Nivel=='M'?'Maestria':'Doctorado')) + '</td><td>' + i.Carrera + '</td><td>'+i.Area+'</td></tr>';
         content = content + row;
     }
     input_M_Table.innerHTML = content;
 }
 
 btn_Add_Area.onclick = () => {
-    $.ajax({
-        type: "POST",
-        url: "/api/Area",
-        data: {
-            "Nombre": input_A_Nombre.value
-        },
-        dataType: "JSON",
-        success: (response) => {
-            $('#Ag_Area').modal('hide');
-            return response;
-        }
-    });
+    if (input_A_Nombre.value !== "") {
+        $.ajax({
+            type: "POST",
+            url: "/api/Area",
+            data: {
+                "Nombre": input_A_Nombre.value
+            },
+            dataType: "JSON",
+            success: (response) => {
+                $('#Ag_Area').modal('hide');
+                return response;
+            }
+        });
+    } else {
+        alert('Agrege todos los campos')
+    }
 }
 
 btn_Add_Materia.onclick = () => {
+    if(input_M_Area.value)
     $.ajax({
         type: "POST",
         url: "/api/Materia",

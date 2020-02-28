@@ -27,5 +27,20 @@ namespace ControlEscolar.Controllers.Grupos
             }
             return datosGrupo.ToArray();
         }
+
+
+        public bool Post(d_Grupos grupos)
+        {
+            Boolean guardar = false;
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+
+                contexto.SaveChanges();
+                guardar = true;
+            }
+            return guardar;
+        }
+
+
     }
 }

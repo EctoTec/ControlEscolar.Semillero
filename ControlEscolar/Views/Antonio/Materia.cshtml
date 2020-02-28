@@ -2,27 +2,35 @@
     ViewBag.Title = "Materia";
 }
 
-<div class="container text-center">
+<div class="container">
     <div>
-        <div class="form-group col-sm-12">
+        <div class="form-group col-sm-6">
             <label for="Nombre_Mat">Materia</label>
             <input id="Nombre_Mat" type="text" class="form-control" placeholder="Materia">
         </div>
-        <div class="form-group col-sm-12">
+        <div class="form-group col-sm-6">
             <label for="Carrera_Mat">Carrera</label>
-            <select id="Carrera_Mat" class="form-control col-sm-11">
-                <option value="" disabled>Elige una Carrera</option>
+            <div class="input-group mb-3">
+            <select id="Carrera_Mat" class="form-control">
+                <option value="0" disabled selected>Elige una Carrera</option>
             </select>
-            <button class="btn btn-success col-sm-1" data-toggle="modal" data-target="#Ag_Carrera">Agregar</button>
+                <div class="input-group-append">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Carrera">Agregar</button>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-sm-12">
+        <div class="form-group col-sm-6">
             <label for="Area_Mat">Area</label>
-            <select id="Area_Mat" class="form-control col-sm-11">
-                <option value="" disabled>Elige una Area</option>
-            </select>
-            <button class="btn btn-success col-sm-1" data-toggle="modal" data-target="#Ag_Area">Agregar</button>
+            <div class="input-group mb-3">
+                <select id="Area_Mat" class="form-control">
+                    <option value="0" disabled selected>Elige una Area</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Area">Agregar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     <button id="Ag_Add_Materia" class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
 </div>
 
@@ -32,6 +40,7 @@
             <th scope="col">Materia</th>
             <th scope="col">Nivel</th>
             <th scope="col">Carrera</th>
+            <th scope="col">Area</th>
         </tr>
     </thead>
     <tbody id="T_body_content"></tbody>
