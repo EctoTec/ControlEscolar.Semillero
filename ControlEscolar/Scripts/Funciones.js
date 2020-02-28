@@ -1,27 +1,24 @@
-﻿function GuardarDatos() {
-    let isEmpty = false,
-        id = document.getElementById("Id").value,
-        nombre = document.getElementById("Nombre").value,
-        apellidos = document.getElementById("Apellidos").value;
-        carrera = document.getElementById("Carrera").value
-        semestre = document.getElementById("Semestre").value
-    if (nombre === "") {
-        alert("Nombre no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (apellidos === "") {
-        alert("Apellidos no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (carrera === "") {
-        alert("Carrera no puede estar vacio");
-        isEmpty = true;
-    }
-    else if (semestre === "") {
-        alert("Semestre no puede estar vacio");
-        isEmpty = true;
-    }
-    return isEmpty;
+﻿let nombre = document.getElementById("Nombre");
+let apellidos = document.getElementById("Apellidos");
+let carrera = document.getElementById("Carrera");
+let semestre = document.getElementById("Semestre");
+
+let GuardarDatoss = () => {
+    $.ajax({
+        type: "POST",
+        url: "/api/DatosAlumnos",
+        data: {
+            "Nombre": nombre.value,
+            "Apellidos": apellidos.value,
+            "Carrera": carrera.value,
+            "Semestres": semestre.value
+        },
+        dataType: "JSON",
+        success: (response) => {
+            $('#modalAlumnos').modal('hide');
+            return response;
+        }
+    });
 }
 
 let table_body = document.getElementById("cuerpo_tabla");
