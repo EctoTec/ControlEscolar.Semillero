@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ControlEscolar.Models.Entidades.t_Materia>
+@{
+    ViewBag.Title = "ConsultarMaterias";
+}
+
+<h2>ConsultarMaterias</h2>
+
+@foreach (ControlEscolar.Models.Entidades.t_Materia materia in Model)
+{
+    <button type="button" class="list-group-item list-group-item-action" onclick="window.location = '@Url.Content("~/Inscripcion/ConsultarGrupos/")@materia.Id'">@materia.Nombre</button>
+}
