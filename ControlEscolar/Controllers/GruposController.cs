@@ -34,7 +34,13 @@ namespace ControlEscolar.Controllers.Grupos
             Boolean guardar = false;
             using(CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
-
+                Models.Grupo grupos1 = new Models.Grupo
+                {
+                    Grp_Materia_Id = grupos.Materia,
+                    Grp_Profesor_Id = grupos.Profesor,
+                    Grp_Turno = grupos.Turno
+                };
+                contexto.Grupo.Add(grupos1);
                 contexto.SaveChanges();
                 guardar = true;
             }
