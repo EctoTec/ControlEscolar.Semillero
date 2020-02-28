@@ -1,23 +1,26 @@
-﻿//document.querySelector('#btn-enviar').addEventListener('click', getDatos);
+﻿let gpoId = document.getElementById("gpoId");
+let mat = document.getElementById("matricula");
 
-//function getDatos() {
-//    const xhttp = new XMLHttpRequest();
+const obtenerMatricula = () => {
+    localStorage.setItem("matAlum", $('#matricula').val())
+}
 
-//    xhttp.open('GET', 'http://localhost:44387/api/Materia', true);
-
-//    xhttp.send();
-
-//    xhttp.onreadystatechange = function () {
-//        if (this.readyState == 4 & this.status == 200) {
-//            let datos = JSON.parse(this.responseText);
-//            let list = document.querySelector('#list');
-//            list.innerHTML = '';
-
-//            for (let item of datos) {
-//                list.innerHTML += `
-//                    <button type="button" class="list-group-item list-group-item-action">${item.Nombre}</button>
-//                `
-//            }
-//        }
-//    }
-//}
+function addGpo(id) {
+    $.ajax({
+        type: "POST",
+        url: "/api/InscripcionApi",
+        data: {
+            "IdGpo": id,
+            "IdAlumno": localStorage.getItem("matAlum")
+        },
+        dataType: "JSON",
+        success: (response) => {
+            alert("Se ha inscrito satisfactoriamente");
+            return response;
+        },
+        Error: (error) => {
+            alert("Error al guardar los datos" + error)
+            return error;
+        }
+    });
+}
