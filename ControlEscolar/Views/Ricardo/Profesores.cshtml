@@ -1,12 +1,33 @@
 ﻿<h2>Profesores</h2>
 
+<style>
+    #myInput {
+        background-image: url('https://www.w3schools.com/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
 <form class="form-inline active-cyan-4">
-    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
-           aria-label="Search">
-    <i class="fas fa-search" aria-hidden="true"></i>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">Agregar</button>
-</form>
+    <!--
+         <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Buscar"
+             aria-label="Search">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    -->
+    <!--
+          <input class="form-control" id="myInput" type="text" placeholder="Buscar. . ." />
 
+    -->
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por #. .">
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">Agregar</button>
+    </div>
+</form>
 
 
 <div class="modal" id="modalProfesores" tabindex="-1" role="dialog">
@@ -44,7 +65,7 @@
     </div>
 </div>
 
-<table class="table">
+<table class="table" id="table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -55,4 +76,5 @@
     </thead>
     <tbody id="T_Prof_body_content"></tbody>
 </table>
+
 @Scripts.Render("~/bundles/Profesores")
