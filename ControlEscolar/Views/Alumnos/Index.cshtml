@@ -1,3 +1,4 @@
+<br>
 <h2>Alumnos</h2>
 
 <div>
@@ -17,7 +18,7 @@
 <div class="col-sm-12 text-center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
 </div>
-
+<br>
 <!--MODAL-->
 <div class="modal" id="modalAlumnos" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -31,10 +32,10 @@
             <div class="modal-body">
                 <!--<p>Modal body text goes here.</p>-->
                 <form>
-                    <div class="form-group">
+                 <!--   <div class="form-group">
                         <label for="formGroupId">Id</label>
                         <input type="number" class="form-control" id="Id">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="formGroupNombre">Nombre</label>
                         <input type="text" class="form-control" id="Nombre">
@@ -63,8 +64,6 @@
         </div>
     </div>
 </div>
-    @Scripts.Render("~/bundles/Funciones")
-
 <!--TABLA CON DATOS-->
 <table class="table">
     <thead class="thead-dark">
@@ -76,6 +75,6 @@
             <th scope="col">Semestre</th>
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    <tbody id="cuerpo_tabla"></tbody>
 </table>
+    @Scripts.Render("~/bundles/Funciones")

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ControlEscolar.Models.Grupo>
+@{
+    ViewBag.Title = "ConsultarGrupos";
+}
+
+<h2>ConsultarGrupos</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Grupo</th>
+                <th>Profesor</th>
+                <th>Turno</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ControlEscolar.Models.Grupo grupo in Model)
+            {
+                <tr>
+                    <td>@grupo.Grp_Id</td>
+                    <td>@grupo.Grp_Profesor_Id</td>
+                    <td>@grupo.Grp_Turno</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

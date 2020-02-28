@@ -6,6 +6,11 @@ let input_P_Nombre = document.getElementById("P_Nombre");
 let input_P_Apellido = document.getElementById("P_Apellido");
 let input_P_Area = document.getElementById("P_Area");
 
+//---
+let input_M_Area = document.getElementById("Area_Mat");
+let input_P_Table = document.getElementById("T_Prof_body_content");
+
+
 btn_Add_Profesor.onclick = () => {
     $.ajax({
         type: "POST",
@@ -13,7 +18,8 @@ btn_Add_Profesor.onclick = () => {
         data: {
             "Nombre": input_P_Nombre.value,
             "Apellido": input_P_Apellido.value,
-            "Area": input_P_Area.value
+            "Area": input_M_Area.value
+
         },
         dataType: "JSON",
         success: (response) => {
@@ -21,5 +27,47 @@ btn_Add_Profesor.onclick = () => {
             return response;
         }
     });
+}
 
+let drawSelectArea = (arreglo) => {
+    let content = input_M_Area.innerHTML;
+    for (i of arreglo) {
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    input_M_Area.innerHTML = content;
+}
+
+
+let drawTableProfesor = (arreglo) => {
+    let content = input_P_Table.innerHTML;
+    for (i of arreglo) {
+        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td></tr>';
+        content = content + row;
+        console.log(content);
+    }
+    input_P_Table.innerHTML = content;
+}
+
+window.onload = () => {
+    $.ajax({
+        type: "GET",
+        url: "/api/Area",
+        dataType: "JSON",
+        success: (response) => {
+            drawSelectArea(response);
+            return response;
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/api/Profesor",
+        dataType: "JSON",
+        success: (response) => {
+            console.log(response);
+            drawTableProfesor(response);
+            return response;
+        }
+    });
 }
