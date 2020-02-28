@@ -28,17 +28,11 @@
                         <label for="formGroupApellido">Apellido</label>
                         <input type="text" class="form-control" id="P_Apellido">
                     </div>
-                    <div class="form-group col-sm-6">
-                        <label> Área</label>
-                        <select class="form-control" id="area">
-                            <option value="" disabled>Elige área</option>
-                            <option value="R">Redes</option>
-                            <option value="S">Soporte</option>
-                        </select>
-                    </div>
                     <div class="form-group">
-                        <label for="formGroupNombre">Área</label>
-                        <input type="text" class="form-control" id="P_Area">
+                        <label for="Area_Mat">Area</label>
+                        <select id="Area_Mat" class="form-control col-sm-11">
+                            <option value="" disabled>Elige una Area</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -59,5 +53,6 @@
             <th scope="col">Área</th>
         </tr>
     </thead>
+    <tbody id="T_Prof_body_content"></tbody>
 </table>
 @Scripts.Render("~/bundles/Profesores")
