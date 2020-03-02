@@ -29,6 +29,17 @@ namespace ControlEscolar.Controllers.Grupos
             return datosGrupo.ToArray();
         }
 
+        public bool DELETE(int Grp_Id)
+        {
+            Boolean delete = false;
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var DelTable = contexto.Grupo.Find(Grp_Id);
+                contexto.Grupo.Remove(DelTable);
+                contexto.SaveChanges();
+            }
+            return delete;
+        }
 
         public bool Post(d_Grupos grupos)
         {

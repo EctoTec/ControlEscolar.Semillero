@@ -3,7 +3,13 @@
     ViewBag.Title = "Grupos";
 }
 
+<style>
+    .hide {display:none;}
+    .red {color: red;}
+</style>
+
 <br />
+
 <h1>Grupos</h1>
 
 <div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6 text-center">
@@ -11,13 +17,12 @@
 </div>
 
 <br />
-<!--
+
 <div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6">
-    Buscar en el contenido de una tabla
     <form>
-        <input id="searchTerm" type="text" onkeyup="doSearch()" />
+        <input id="searchTerm" type="number" onkeyup="doSearch()" />
     </form>
-</div>-->
+</div>
 
 <br />
 
@@ -60,16 +65,20 @@
 </div>
 
 <table class="table" id="datos">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>Id
-            <th>
+            <th>Id</th>
             <th>Materia</th>
             <th>Maestro</th>
             <th>Turno</th>
         </tr>
     </thead>
     <tbody id="datos_Grupo"></tbody>
+
+
+    <tr class='noSearch hide'>
+        <td colspan="4"></td>
+    </tr>
 </table>
 
 <p>Creado por: S-176</p>

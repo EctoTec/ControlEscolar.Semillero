@@ -20,4 +20,12 @@ namespace ControlEscolar.Models.Entidades
         public string Apellido { get; set; }
         public int Area { get; set; }
     }
+
+    public class d_Materias
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int Carrera_Id { get; set; }
+        public int Area { get; set; }
+    }
 }
