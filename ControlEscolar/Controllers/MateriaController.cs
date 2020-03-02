@@ -61,13 +61,38 @@ namespace ControlEscolar.Controllers
         }
 
         // PUT: api/Materia/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, c_Materia materia)
         {
+            Boolean guardar = false;
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                if(contexto.Materia.Count() > 0)
+                {
+                    Materia materia1 = contexto.Materia.Where(e => e.Mat_Id == id).FirstOrDefault();
+                    if(materia1 != null)
+                    {
+                        materia1.Mat_Carrera_Id = materia.Carrera;
+                        materia1.Mat_Area_Id = materia.Area;
+                        materia1.Mat_Nombre = materia.Nombre;
+                        contexto.SaveChanges();
+                        guardar = true;
+                    }
+                }
+            }
+            return guardar;
         }
 
         // DELETE: api/Materia/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Materia materia = contexto.Materia.Where(e => e.Mat_Id == id).FirstOrDefault();
+                contexto.Materia.Remove(materia);
+                contexto.SaveChanges();
+            }
+            return guardar;
         }
     }
 }

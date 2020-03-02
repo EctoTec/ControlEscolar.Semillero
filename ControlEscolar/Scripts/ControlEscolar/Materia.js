@@ -15,7 +15,7 @@ let input_M_Table = document.getElementById("T_body_content");
 let drawSelectCarrera = (arreglo) => {
     let content = input_M_Carrera.innerHTML;
     for(i of arreglo) {
-        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Carrera.innerHTML = content;
@@ -24,7 +24,7 @@ let drawSelectCarrera = (arreglo) => {
 let drawSelectArea = (arreglo) => {
     let content = input_M_Area.innerHTML;
     for (i of arreglo) {
-        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Area.innerHTML = content;
@@ -32,8 +32,10 @@ let drawSelectArea = (arreglo) => {
 
 let drawTableMateria = (arreglo) => {
     let content = input_M_Table.innerHTML;
+    content = "";
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Nombre + '</td><td>' + (i.Nivel=='L'?'Licenciatura':(i.Nivel=='M'?'Maestria':'Doctorado')) + '</td><td>' + i.Carrera + '</td><td>'+i.Area+'</td></tr>';
+        let row = '<tr><td>' + i.Nombre + '</td><td>' + (i.Nivel == 'L' ? 'Licenciatura' : (i.Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
+            + i.Carrera + '</td><td>' + i.Area + '</td><td><button class="btn btn-info">Editar</button><td><button class="btn btn-danger">Eliminar</button></td></tr>';
         content = content + row;
     }
     input_M_Table.innerHTML = content;
@@ -50,6 +52,7 @@ btn_Add_Area.onclick = () => {
             dataType: "JSON",
             success: (response) => {
                 $('#Ag_Area').modal('hide');
+                GetArea();
                 return response;
             }
         });
@@ -58,8 +61,9 @@ btn_Add_Area.onclick = () => {
     }
 }
 
-btn_Add_Materia.onclick = () => {
-    if (input_M_Area.value !== "0" && input_M_Carrera.value !== "0" && input_M_Nombre !== "") {
+btn_Add_Materia.onclick = (id = null) => {
+    if (input_M_Area.value !== "" && input_M_Carrera.value !== "" && input_M_Nombre !== "") {
+        console.log(id);
         $.ajax({
             type: "POST",
             url: "/api/Materia",
@@ -70,6 +74,7 @@ btn_Add_Materia.onclick = () => {
             },
             dataType: "JSON",
             success: (response) => {
+                GetMateria();
                 alert("Se ha agregado la materia satisfactoriamente");
                 return response;
             }
@@ -91,6 +96,7 @@ btn_Add_Carrera.onclick = () => {
             dataType: "JSON",
             success: (response) => {
                 $('#Ag_Carrera').modal('hide');
+                GetCarrera();
                 return response;
             }
         });
@@ -100,15 +106,24 @@ btn_Add_Carrera.onclick = () => {
 }
 
 window.onload = () => {
+    GetArea();
+    GetCarrera();
+    GetMateria();
+}
+
+let GetMateria = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Area",
+        url: "/api/Materia",
         dataType: "JSON",
         success: (response) => {
-            drawSelectArea(response);
+            drawTableMateria(response);
             return response;
         }
     });
+}
+
+let GetCarrera = () => {
     $.ajax({
         type: "GET",
         url: "/api/Carrera",
@@ -118,12 +133,15 @@ window.onload = () => {
             return response;
         }
     });
+}
+
+let GetArea = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Materia",
+        url: "/api/Area",
         dataType: "JSON",
         success: (response) => {
-            drawTableMateria(response);
+            drawSelectArea(response);
             return response;
         }
     });
