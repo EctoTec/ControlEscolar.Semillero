@@ -12,6 +12,8 @@ let input_M_Nombre = document.getElementById("Nombre_Mat");
 
 let input_M_Table = document.getElementById("T_body_content");
 
+let arreglo_M = [];
+
 let drawSelectCarrera = (arreglo) => {
     let content = input_M_Carrera.innerHTML;
     for(i of arreglo) {
@@ -30,15 +32,35 @@ let drawSelectArea = (arreglo) => {
     input_M_Area.innerHTML = content;
 }
 
-let drawTableMateria = (arreglo) => {
+let drawpagination = (desde, hasta) => {
+    arreglo = arreglo_M;
     let content = input_M_Table.innerHTML;
     content = "";
-    for (i of arreglo) {
-        let row = '<tr><td>' + i.Nombre + '</td><td>' + (i.Nivel == 'L' ? 'Licenciatura' : (i.Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
-            + i.Carrera + '</td><td>' + i.Area + '</td><td><button class="btn btn-info">Editar</button><td><button class="btn btn-danger">Eliminar</button></td></tr>';
+    for (i = desde; i <= hasta; i++) {
+        console.log(i)
+        let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
+            + arreglo[i].Carrera + '</td><td>' + arreglo[i].Area + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_M_Table.innerHTML = content;
+}
+
+let drawTableMateria = (arreglo) => {
+    arreglo_M = arreglo;
+    let paginacion = document.getElementById('paginacion');
+    let totalRows = arreglo.length;
+    let numerosPaginacion = totalRows / 5;
+    console.log(numerosPaginacion);
+    paginacion.innerHTML = "";
+    let number = '';
+    console.log(Math.ceil(numerosPaginacion))
+    for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+            i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows -1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
+    }
+    paginacion.innerHTML = number;
+    drawpagination(0, 4);
 }
 
 btn_Add_Area.onclick = () => {
