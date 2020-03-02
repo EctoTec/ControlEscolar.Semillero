@@ -12,7 +12,7 @@ namespace ControlEscolar.Controllers.DatosAlumnos
     public class DatosAlumnosController : ApiController
     {
         // GET: api/DatosAlumnos
-        public c_DatosAlumnos[] Get()
+       /* public c_DatosAlumnos[] Get()
         {
             List<c_DatosAlumnos> datosalumno = new List<c_DatosAlumnos>();
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
@@ -31,7 +31,26 @@ namespace ControlEscolar.Controllers.DatosAlumnos
             }
             return datosalumno.ToArray();
         }
-
+        */
+        public tab_DatosAlumnos[] GET()
+        {
+            List<tab_DatosAlumnos> LAlum = new List<tab_DatosAlumnos>();
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var query = from alu in contexto.Alumno
+                            join car in contexto.Carrera on alu.Al_Carrera_Id equals car.Car_Id
+                            select new tab_DatosAlumnos
+                            {
+                                Id = alu.Al_Id,
+                                Nombre = alu.Al_Nombre,
+                                Apellidos = alu.Al_Apellido,
+                                Carrera = car.Car_Nombre,
+                                Semestres = alu.Al_Semestre
+                            };
+                LAlum = query.ToList();
+            }
+            return LAlum.ToArray();
+        }
 
         public bool Post(c_DatosAlumnos al)
         {
