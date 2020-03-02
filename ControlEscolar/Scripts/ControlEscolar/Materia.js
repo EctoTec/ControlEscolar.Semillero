@@ -65,8 +65,8 @@ btn_Add_Materia.onclick = () => {
             url: "/api/Materia",
             data: {
                 "Nombre": input_M_Nombre.value,
-                "Carrera": input_M_Carrera.value,
-                "Area": input_M_Area.value
+                "Carrera": (input_M_Carrera.value - 1),
+                "Area": (input_M_Area.value - 1)
             },
             dataType: "JSON",
             success: (response) => {
