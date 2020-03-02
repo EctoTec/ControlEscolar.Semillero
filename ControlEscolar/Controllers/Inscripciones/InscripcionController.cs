@@ -26,7 +26,7 @@ namespace ControlEscolar.Controllers.Inscripciones
                 mat => mat.Carrera.Car_Id,
                 carr => carr.Mat_Carrera_Id,
                 (mat, carr) => new { Materia = mat, Carrera = carr })
-            .Where(postAndMeta => postAndMeta.Materia.Alumno.Al_Id == id).Select(x => new t_Materia { Nombre = x.Carrera.Mat_Nombre, Id=x.Carrera.Mat_Area_Id })
+            .Where(postAndMeta => postAndMeta.Materia.Alumno.Al_Id == id).Select(x => new t_Materia { Nombre = x.Carrera.Mat_Nombre, Id=x.Carrera.Mat_Id })
             .ToList();
             return View(query);
 

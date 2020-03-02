@@ -23,7 +23,7 @@
             <label for="Carrera_Mat">Carrera</label>
             <div class="input-group mb-3">
             <select id="Carrera_Mat" class="form-control">
-                <option value="0" disabled selected>Elige una Carrera</option>
+                <option value="" disabled selected>Elige una Carrera</option>
             </select>
                 <div class="input-group-append">
                     <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Carrera">Agregar</button>
@@ -34,7 +34,7 @@
             <label for="Area_Mat">Area</label>
             <div class="input-group mb-3">
                 <select id="Area_Mat" class="form-control">
-                    <option value="0" disabled selected>Elige una Area</option>
+                    <option value="" disabled selected>Elige una Area</option>
                 </select>
                 <div class="input-group-append">
                     <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Area">Agregar</button>
@@ -54,10 +54,21 @@
             <th scope="col">Nivel</th>
             <th scope="col">Carrera</th>
             <th scope="col">Area</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody id="T_body_content"></tbody>
 </table>
+<nav aria-label="table">
+    <ul class="pagination" id="paginacion">
+        <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#table">1</a></li>
+        <li class="page-item"><a class="page-link" href="#table">2</a></li>
+        <li class="page-item"><a class="page-link" href="#table">3</a></li>
+        <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+    </ul>
+</nav>
 
 <div class="modal fade" id="Ag_Area" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

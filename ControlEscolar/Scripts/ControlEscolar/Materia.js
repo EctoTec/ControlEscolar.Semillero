@@ -12,10 +12,12 @@ let input_M_Nombre = document.getElementById("Nombre_Mat");
 
 let input_M_Table = document.getElementById("T_body_content");
 
+let arreglo_M = [];
+
 let drawSelectCarrera = (arreglo) => {
     let content = input_M_Carrera.innerHTML;
     for(i of arreglo) {
-        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Carrera.innerHTML = content;
@@ -24,19 +26,41 @@ let drawSelectCarrera = (arreglo) => {
 let drawSelectArea = (arreglo) => {
     let content = input_M_Area.innerHTML;
     for (i of arreglo) {
-        let option = '<option value="' + (i.Id+1) + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     input_M_Area.innerHTML = content;
 }
 
-let drawTableMateria = (arreglo) => {
+let drawpagination = (desde, hasta) => {
+    arreglo = arreglo_M;
     let content = input_M_Table.innerHTML;
-    for (i of arreglo) {
-        let row = '<tr><td>' + i.Nombre + '</td><td>' + (i.Nivel=='L'?'Licenciatura':(i.Nivel=='M'?'Maestria':'Doctorado')) + '</td><td>' + i.Carrera + '</td><td>'+i.Area+'</td></tr>';
+    content = "";
+    for (i = desde; i <= hasta; i++) {
+        console.log(i)
+        let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
+            + arreglo[i].Carrera + '</td><td>' + arreglo[i].Area + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_M_Table.innerHTML = content;
+}
+
+let drawTableMateria = (arreglo) => {
+    arreglo_M = arreglo;
+    let paginacion = document.getElementById('paginacion');
+    let totalRows = arreglo.length;
+    let numerosPaginacion = totalRows / 5;
+    console.log(numerosPaginacion);
+    paginacion.innerHTML = "";
+    let number = '';
+    console.log(Math.ceil(numerosPaginacion))
+    for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+            i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows -1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
+    }
+    paginacion.innerHTML = number;
+    drawpagination(0, 4);
 }
 
 btn_Add_Area.onclick = () => {
@@ -50,6 +74,7 @@ btn_Add_Area.onclick = () => {
             dataType: "JSON",
             success: (response) => {
                 $('#Ag_Area').modal('hide');
+                GetArea();
                 return response;
             }
         });
@@ -58,8 +83,9 @@ btn_Add_Area.onclick = () => {
     }
 }
 
-btn_Add_Materia.onclick = () => {
-    if (input_M_Area.value !== "0" && input_M_Carrera.value !== "0" && input_M_Nombre !== "") {
+btn_Add_Materia.onclick = (id = null) => {
+    if (input_M_Area.value !== "" && input_M_Carrera.value !== "" && input_M_Nombre !== "") {
+        console.log(id);
         $.ajax({
             type: "POST",
             url: "/api/Materia",
@@ -70,6 +96,7 @@ btn_Add_Materia.onclick = () => {
             },
             dataType: "JSON",
             success: (response) => {
+                GetMateria();
                 alert("Se ha agregado la materia satisfactoriamente");
                 return response;
             }
@@ -91,6 +118,7 @@ btn_Add_Carrera.onclick = () => {
             dataType: "JSON",
             success: (response) => {
                 $('#Ag_Carrera').modal('hide');
+                GetCarrera();
                 return response;
             }
         });
@@ -100,15 +128,24 @@ btn_Add_Carrera.onclick = () => {
 }
 
 window.onload = () => {
+    GetArea();
+    GetCarrera();
+    GetMateria();
+}
+
+let GetMateria = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Area",
+        url: "/api/Materia",
         dataType: "JSON",
         success: (response) => {
-            drawSelectArea(response);
+            drawTableMateria(response);
             return response;
         }
     });
+}
+
+let GetCarrera = () => {
     $.ajax({
         type: "GET",
         url: "/api/Carrera",
@@ -118,12 +155,15 @@ window.onload = () => {
             return response;
         }
     });
+}
+
+let GetArea = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Materia",
+        url: "/api/Area",
         dataType: "JSON",
         success: (response) => {
-            drawTableMateria(response);
+            drawSelectArea(response);
             return response;
         }
     });
