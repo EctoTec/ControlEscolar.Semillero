@@ -34,6 +34,9 @@ namespace ControlEscolar
 
             bundles.Add(new ScriptBundle("~/bundles/Profesores").Include(
                       "~/Scripts/ControlEscolar/Profesor.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Grupos").Include(
+                "~/Scripts/ControlEscolar/Grupos.js"));
         }
     }
 }

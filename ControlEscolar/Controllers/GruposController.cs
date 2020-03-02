@@ -19,6 +19,7 @@ namespace ControlEscolar.Controllers.Grupos
                 {
                     datosGrupo.Add(new d_Grupos()
                     {
+                        Id = item.Grp_Id,
                         Materia = item.Grp_Materia_Id,
                         Profesor = item.Grp_Profesor_Id,
                         Turno = item.Grp_Turno
@@ -36,6 +37,7 @@ namespace ControlEscolar.Controllers.Grupos
             {
                 Models.Grupo grupos1 = new Models.Grupo
                 {
+                    Grp_Id = grupos.Id,
                     Grp_Materia_Id = grupos.Materia,
                     Grp_Profesor_Id = grupos.Profesor,
                     Grp_Turno = grupos.Turno
