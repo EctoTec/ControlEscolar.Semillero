@@ -27,7 +27,8 @@ let Table = document.getElementById("datos_Grupo");
 let drawTable = (arreglo) => {
     let content = Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + (i.Id + 1) + '</td><td>' + i.Materia + '</td><td>' + i.Profesor + '</td><td>' + i.Turno + '</td><td><button type="button" class="btn btn-secondary">Editar</button><button type="button" class="btn btn-warning">Eliminar</button></td></tr>';
+        let row = '<tr><td>' + (i.Id + 1) + '</td><td>' + i.Materia + '</td><td>' + i.Profesor + '</td><td>' + i.Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     Table.innerHTML = content;
