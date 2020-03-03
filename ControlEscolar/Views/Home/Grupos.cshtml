@@ -24,24 +24,14 @@
     }
 </style>
 
-<br />
-
 <h1>Grupos</h1>
 
 <div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6 text-center">
     <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Grupo">Nuevo Grupo</button>
 </div>
 
-<br />
-
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por grupos">
-<!--
-<div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6">
-    <form>
-        <input id="searchTerm" type="number" onkeyup="doSearch()" />
-    </form>
-</div>
--->
+
 <br />
 
 <div class="modal fade" id="Ag_Grupo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,20 +83,23 @@
             <th>Materia</th>
             <th>Maestro</th>
             <th>Turno</th>
+            <th colspan="2" align="center">Acciones</th>
         </tr>
     </thead>
     <tbody id="datos_Grupo"></tbody>
-
-
-    <tr class='noSearch hide'>
-        <td colspan="4"></td>
-    </tr>
 </table>
+
+<nav aria-label="table">
+    <ul class="pagination" id="paginacion">
+        <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#table">1</a></li>
+        <li class="page-item"><a class="page-link" href="#table">2</a></li>
+        <li class="page-item"><a class="page-link" href="#table">3</a></li>
+        <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+    </ul>
+</nav>
 
 <p>Creado por: S-176</p>
 
+
 @Scripts.Render("~/bundles/Grupos")
-
-<script type="text/javascript">
-
-</script>

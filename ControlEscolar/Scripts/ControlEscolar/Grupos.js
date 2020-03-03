@@ -1,22 +1,22 @@
 ﻿let btn_Add_Grupo = document.getElementById("save");
-let input_Materia = document.getElementById("Materia");
-let input_Maestro = document.getElementById("Maestro");
 let input_Turno = document.getElementById("Turno");
 let select_Materia = document.getElementById("S_Materia");
 let select_Profesor = document.getElementById("S_Profesor");
+let arreglo_G = [];
 
 let GuardarDatosGrupo = () => {
     $.ajax({
         type: "POST",
         url: "/api/Grupos",
         data: {
-            "Materia": input_Materia.value,
-            "Profesor": input_Maestro.value,
+            "Materia": select_Materia.value,
+            "Profesor": select_Profesor.value,
             "Turno": input_Turno.value
         },
         dataType: "JSON",
         success: (response) => {
             $('#Ag_Grupo').modal('hide');
+            location.reload();
             return response;
         }
     });
@@ -24,14 +24,32 @@ let GuardarDatosGrupo = () => {
 
 let Table = document.getElementById("datos_Grupo");
 
-let drawTable = (arreglo) => {
+let drawpagination = (S, M) => {
+    arreglo = arreglo_G;
     let content = Table.innerHTML;
-    for (i of arreglo) {
-        let row = '<tr><td>' + (i.Id + 1) + '</td><td>' + i.Materia + '</td><td>' + i.Profesor + '</td><td>' + i.Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+    content = "";
+    for (i = S; i <= M; i++) {
+        console.log(i);
+        let row = '<tr><td>' + (arreglo[i].Id + 1) + '</td><td>' + arreglo[i].Materia + '</td><td>' + arreglo[i].Profesor + '</td><td>' + arreglo[i].Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     Table.innerHTML = content;
+}
+
+let drawTable = (arreglo) => {
+    arreglo_G = arreglo;
+    let paginacion = document.getElementById('paginacion');
+    let totalRows = arreglo.length;
+    let numerosPaginacion = totalRows / 5;
+    paginacion.innerHTML = "";
+    let number = '';
+    for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+            i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows - 1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
+    }
+    paginacion.innerHTML = number;
+    drawpagination(0, 4);
 }
 
 
@@ -71,7 +89,7 @@ window.onload = () => {
 let drawSelectMateria = (arreglo) => {
     let content = select_Materia.innerHTML;
     for (i of arreglo) {
-        let option = '<option value"' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     select_Materia.innerHTML = content;
@@ -80,7 +98,7 @@ let drawSelectMateria = (arreglo) => {
 let drawSelectProfesor = (arreglo) => {
     let content = select_Profesor.innerHTML;
     for (i of arreglo) {
-        let option = '<option value"' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
         content = content + option;
     }
     select_Profesor.innerHTML = content;
@@ -105,6 +123,9 @@ function myFunction() {
         }
     }
 }
+
+
+
 /* FUNCION PARA BUSCAR DE ACUERDO A LETRAS
  * NO NUMEROS
 function doSearch() {

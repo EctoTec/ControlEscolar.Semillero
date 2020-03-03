@@ -54,7 +54,7 @@ namespace ControlEscolar.Controllers.Grupos
                     Grp_Turno = grupos.Turno
                 };
                 contexto.Grupo.Add(grupos1);
-                int v = contexto.SaveChanges();
+                contexto.SaveChanges();
                 guardar = true;
             }
             return guardar;
