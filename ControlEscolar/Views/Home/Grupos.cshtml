@@ -4,8 +4,24 @@
 }
 
 <style>
-    .hide {display:none;}
-    .red {color: red;}
+    .hide {
+        display: none;
+    }
+
+    .red {
+        color: red;
+    }
+
+    #myInput {
+        background-image: url('https://www.w3schools.com/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
 </style>
 
 <br />
@@ -18,12 +34,14 @@
 
 <br />
 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por grupos">
+<!--
 <div class=".col-12 .col-sm-12 .col-md-12 .col-lg-6 .col-xl-6">
     <form>
         <input id="searchTerm" type="number" onkeyup="doSearch()" />
     </form>
 </div>
-
+-->
 <br />
 
 <div class="modal fade" id="Ag_Grupo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,11 +57,15 @@
                 <form>
                     <div class="form-group col-sm-12">
                         <label>Materia</label>
-                        <input type="text" class="form-control" id="Materia" />
+                        <select id="S_Materia" class="form-control">
+                            <option value="" disabled>Elige una materia</option>
+                        </select>
                     </div>
                     <div class="form-group col-sm-12">
                         <label>Profesor</label>
-                        <input type="text" class="form-control" id="Maestro" />
+                        <select id="S_Profesor" class="form-control">
+                            <option value="" disabled>Elige un maestro</option>
+                        </select>
                     </div>
                     <div class="form-group col-sm-12">
                         <label>Turno</label>

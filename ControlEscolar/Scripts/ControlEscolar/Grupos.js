@@ -2,6 +2,8 @@
 let input_Materia = document.getElementById("Materia");
 let input_Maestro = document.getElementById("Maestro");
 let input_Turno = document.getElementById("Turno");
+let select_Materia = document.getElementById("S_Materia");
+let select_Profesor = document.getElementById("S_Profesor");
 
 let GuardarDatosGrupo = () => {
     $.ajax({
@@ -42,8 +44,68 @@ window.onload = () => {
             return response;
         }
     });
+
+    $.ajax({
+        type: "GET",
+        url: "/api/Profesor",
+        dataType: "JSON",
+        success: (response) => {
+            console.log(response);
+            drawSelectProfesor(response);
+            return response;
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/api/Materia",
+        dataType: "JSON",
+        success: (response) => {
+            drawSelectMateria(response);
+            return response;
+        }
+    });
 }
 
+let drawSelectMateria = (arreglo) => {
+    let content = select_Materia.innerHTML;
+    for (i of arreglo) {
+        let option = '<option value"' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    select_Materia.innerHTML = content;
+}
+
+let drawSelectProfesor = (arreglo) => {
+    let content = select_Profesor.innerHTML;
+    for (i of arreglo) {
+        let option = '<option value"' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    select_Profesor.innerHTML = content;
+}
+
+function myFunction() {
+    var input, table, tr, td, i, txtValue;
+    var filter;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("datos");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+/* FUNCION PARA BUSCAR DE ACUERDO A LETRAS
+ * NO NUMEROS
 function doSearch() {
     const tableReg = document.getElementById('datos');
     const searchText = document.getElementById('searchTerm').value.toLowerCase();
@@ -87,3 +149,5 @@ function doSearch() {
         td.innerHTML = "No se han encontrado coincidencias";
     }
 }
+
+*/
