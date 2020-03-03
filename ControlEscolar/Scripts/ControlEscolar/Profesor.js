@@ -59,9 +59,8 @@ let drawSelectArea = (arreglo) => {
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td><td><button type="button" class="btn btn-secondary">Editar</button><button type="button" class="btn btn-warning">Eliminar</button></td></tr>';
+        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td><td><button type="button" class="btn btn-secondary">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td></tr>';
         content = content + row;
-        console.log(content);
     }
     input_P_Table.innerHTML = content;
 }
@@ -82,7 +81,6 @@ window.onload = () => {
         url: "/api/Profesor",
         dataType: "JSON",
         success: (response) => {
-            console.log(response);
             drawTableProfesor(response);
             return response;
         }
