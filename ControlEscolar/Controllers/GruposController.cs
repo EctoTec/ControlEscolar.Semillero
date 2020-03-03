@@ -60,5 +60,19 @@ namespace ControlEscolar.Controllers.Grupos
             }
             return delete;
         }
+
+        public void PUT(int Grp_Id, Models.Grupo grupo)
+        {
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var EditTable = contexto.Grupo.Find(Grp_Id);
+
+                EditTable.Grp_Materia_Id = grupo.Grp_Materia_Id;
+                EditTable.Grp_Profesor_Id = grupo.Grp_Profesor_Id;
+                EditTable.Grp_Turno = grupo.Grp_Turno;
+                contexto.Entry(EditTable).State = System.Data.Entity.EntityState.Modified;
+                contexto.SaveChanges();
+            }
+        }
     }
 }
