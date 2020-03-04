@@ -39,28 +39,11 @@ namespace ControlEscolar.Controllers.Inscripciones
             return View(query);
 
         }
+
+        public ActionResult AlumnosGpo()
+        {
+
+            return View();
+        }
     }
-
-    //public class InscripcionApi : ApiController
-    //{
-    //    [System.Web.Http.Route("api/Inscripcion")]
-    //    public bool Post(InscripcionModel InscripcionModel)
-    //    {
-    //        Boolean guardar = false;
-    //        using (CursoEscolarEntities db = new CursoEscolarEntities())
-    //        {
-
-    //            Inscripcion grupodb = new Inscripcion
-    //            {
-    //                Ins_Grupo_Id = InscripcionModel.IdGrupo,
-    //                Ins_Alumno_Id = InscripcionModel.IdAlumno
-    //            };
-    //            db.Materia.Add(grupodb);
-    //            db.SaveChanges();
-    //            guardar = true;
-    //        }
-
-    //        return guardar;
-    //    }
-    //}
 }
