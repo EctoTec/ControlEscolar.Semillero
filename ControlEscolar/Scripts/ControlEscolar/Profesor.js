@@ -41,6 +41,11 @@ btn_Add_Profesor.onclick = () => {
         dataType: "JSON",
         success: (response) => {
             $('#modalProfesores').modal('hide');
+            cargarProfesor();
+            $('#modalAddProf').modal('show');
+            setTimeout(function () {
+                $('#modalAddProf').modal('hide');
+            }, 1500);
             return response;
         }
     });
@@ -67,17 +72,7 @@ let drawTableProfesor = (arreglo) => {
     input_P_Table.innerHTML = content;
 }
 
-window.onload = () => {
-    $.ajax({
-        type: "GET",
-        url: "/api/Area",
-        dataType: "JSON",
-        success: (response) => {
-            drawSelectArea(response);
-            return response;
-        }
-    });
-
+function cargarProfesor(){
     $.ajax({
         type: "GET",
         url: "/api/Profesor",
@@ -88,6 +83,21 @@ window.onload = () => {
         }
     });
 }
+
+window.onload = () => {
+    cargarProfesor();
+    $.ajax({
+        type: "GET",
+        url: "/api/Area",
+        dataType: "JSON",
+        success: (response) => {
+            drawSelectArea(response);
+            return response;
+        }
+    });
+}
+
+
 
 function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
