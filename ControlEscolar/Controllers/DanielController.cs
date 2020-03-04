@@ -13,11 +13,11 @@ namespace ControlEscolar.Controllers
         // GET: Daniel
         public ActionResult Index()
         {
-            List<c_Materia> lst;
+            List<C_Materia> lst;
             using (CursoEscolarEntities db = new CursoEscolarEntities())
             {
                 lst = (from d in db.Materia
-                       select new c_Materia
+                       select new C_Materia
                        {
                            Id = d.Mat_Id,
                            Nombre = d.Mat_Nombre
@@ -32,7 +32,7 @@ namespace ControlEscolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inscribir(c_Materia model)
+        public ActionResult Inscribir(C_Materia model)
         {
             try
             {
