@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <button id="Ag_Add_Materia" class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
+        <button id="Ag_Add_Materia" class="btn btn-success">Agregar Materia</button>
     </div>
 </div>
 <hr>
@@ -82,8 +82,51 @@
                 </ul>
             </nav>
         </div>
-        <div class="tab-pane fade" id="nav-carrera" role="tabpanel" aria-labelledby="nav-carrera-tab">...</div>
-        <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-area-tab">...</div>
+        <div class="tab-pane fade" id="nav-carrera" role="tabpanel" aria-labelledby="nav-carrera-tab">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por carreras..">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Carrera</th>
+                        <th scope="col">Nivel</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="T_body_content_carrera"></tbody>
+            </table>
+            <nav aria-label="table">
+                <ul class="pagination" id="paginacion">
+                    <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-area-tab">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por materias..">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Area</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="T_body_content_area"></tbody>
+            </table>
+            <nav aria-label="table">
+                <ul class="pagination" id="paginacion">
+                    <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
     <div class="modal fade" id="Ag_Area" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -182,4 +225,5 @@
                 </div>
             </div>
         </div>
-        @Scripts.Render("~/bundles/Materias")
+    </div>
+    @Scripts.Render("~/bundles/Materias")

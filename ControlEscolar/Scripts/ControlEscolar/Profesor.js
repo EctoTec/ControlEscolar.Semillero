@@ -12,12 +12,12 @@ let input_P_Area = document.getElementById("P_Area");
 let input_M_Area = document.getElementById("Area_Mat");
 let input_P_Table = document.getElementById("T_Prof_body_content");
 
-/*btn_Del_Profesor.onclick = () => {
+function eliminar(Id){
     $.ajax({
         type: "DELETE",
         url: "/api/Profesor",
         data: {
-            "Prf_Id": input_P_Del_Id.value
+            Id: Id.value
         },
         dataType: "JSON",
         success: (response) => {
@@ -25,7 +25,7 @@ let input_P_Table = document.getElementById("T_Prof_body_content");
             return response;
         }
     });
-}*/
+}
 
 
 btn_Add_Profesor.onclick = () => {
@@ -66,7 +66,7 @@ let drawTableProfesor = (arreglo) => {
     for (i of arreglo) {
         let row = '<tr><td>' + getNumeroProfesor(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
             '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
-            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="eliminar('+ i.Id +');"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_P_Table.innerHTML = content;
@@ -74,27 +74,38 @@ let drawTableProfesor = (arreglo) => {
 
 function getNumeroProfesor(id) {
     if (id < 1) {
-        id = "000000" + id;
-    }
-    else if (id < 10) {
         id = "00000" + id;
     }
-    else if (id < 100) {
+    else if (id < 10) {
         id = "0000" + id;
     }
-    else if (id < 1000) {
+    else if (id < 100) {
         id = "000" + id;
     }
-    else if (id < 10000) {
+    else if (id < 1000) {
         id = "00" + id;
     }
-    else if (id < 100000) {
+    else if (id < 10000) {
         id = "0" + id;
     }
-    else if (id >= 100000) {
+    else if (id >= 10000) {
         id = id;
     }
     return id;
+}
+
+function cargarProfesor() {
+    $.ajax({
+        type: "GET",
+        url: "/api/Area",
+        url: "/api/Profesor",
+        dataType: "JSON",
+        success: (response) => {
+            drawSelectArea(response);
+            drawTableProfesor(response);
+            return response;
+        }
+    });
 }
 
 window.onload = () => {
