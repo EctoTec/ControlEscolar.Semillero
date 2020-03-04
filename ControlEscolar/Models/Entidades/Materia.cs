@@ -5,15 +5,15 @@ using System.Web;
 
 namespace ControlEscolar.Models.Entidades
 {
-    public class c_Materia
+    public class C_Materia
     {
         public int Id { get; set; }
         public String Nombre { get; set; }
-        public int Carrera { get; set; }
-        public int Area { get; set; }
+        public C_Carrera Carrera { get; set; }
+        public C_Area Area { get; set; }
     }
 
-    public class t_Materia
+    /*public class T_Materia
     {
         public int Id { get; set; }
         public String Nombre { get; set; }
@@ -21,13 +21,13 @@ namespace ControlEscolar.Models.Entidades
         public String Nivel { get; set; }
         public String Area { get; set; }
 
-    }
-    public class c_Area
+    }*/
+    public class C_Area
     {
         public int Id { get; set; }
         public String Nombre { get; set; }
     }
-    public class c_Carrera
+    public class C_Carrera
     {
         public int Id { get; set; }
         public String Nombre { get; set; }

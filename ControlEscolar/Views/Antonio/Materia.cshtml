@@ -3,18 +3,21 @@
 }
 <style>
     #myInput {
-  background-image: url('https://www.w3schools.com/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
+        background-image: url('https://www.w3schools.com/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
 </style>
-<div class="container">
-    <div>
+<div class="container mt-2">
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Agregar Materia
+    </a>
+    <div class="collapse" id="collapseExample">
         <div class="form-group col-sm-6">
             <label for="Nombre_Mat">Materia</label>
             <input id="Nombre_Mat" type="text" class="form-control" placeholder="Materia">
@@ -22,9 +25,9 @@
         <div class="form-group col-sm-6">
             <label for="Carrera_Mat">Carrera</label>
             <div class="input-group mb-3">
-            <select id="Carrera_Mat" class="form-control">
-                <option value="" disabled selected>Elige una Carrera</option>
-            </select>
+                <select id="Carrera_Mat" class="form-control">
+                    <option value="" disabled selected>Elige una Carrera</option>
+                </select>
                 <div class="input-group-append">
                     <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Carrera">Agregar</button>
                 </div>
@@ -38,95 +41,145 @@
                 </select>
                 <div class="input-group-append">
                     <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Area">Agregar</button>
-                    </div>
                 </div>
             </div>
         </div>
-    <button id="Ag_Add_Materia" class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
+        <button id="Ag_Add_Materia" class="btn btn-success" data-toggle="modal" data-target="#Ag_Materia">Agregar Materia</button>
+    </div>
 </div>
 <hr>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por materias..">
+<div id="load_data">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-materia-tab" data-toggle="tab" href="#nav-materia" role="tab" aria-controls="nav-materia" aria-selected="true">Materia</a>
+            <a class="nav-item nav-link" id="nav-carrera-tab" data-toggle="tab" href="#nav-carrera" role="tab" aria-controls="nav-carrera" aria-selected="false">Carrera</a>
+            <a class="nav-item nav-link" id="nav-area-tab" data-toggle="tab" href="#nav-area" role="tab" aria-controls="nav-area" aria-selected="false">Area</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-materia" role="tabpanel" aria-labelledby="nav-materia-tab">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por materias..">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Materia</th>
+                        <th scope="col">Nivel</th>
+                        <th scope="col">Carrera</th>
+                        <th scope="col">Area</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="T_body_content"></tbody>
+            </table>
+            <nav aria-label="table">
+                <ul class="pagination" id="paginacion">
+                    <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#table">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tab-pane fade" id="nav-carrera" role="tabpanel" aria-labelledby="nav-carrera-tab">...</div>
+        <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-area-tab">...</div>
+    </div>
 
-<table class="table" id="table">
-    <thead>
-        <tr>
-            <th scope="col">Materia</th>
-            <th scope="col">Nivel</th>
-            <th scope="col">Carrera</th>
-            <th scope="col">Area</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody id="T_body_content"></tbody>
-</table>
-<nav aria-label="table">
-    <ul class="pagination" id="paginacion">
-        <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#table">1</a></li>
-        <li class="page-item"><a class="page-link" href="#table">2</a></li>
-        <li class="page-item"><a class="page-link" href="#table">3</a></li>
-        <li class="page-item"><a class="page-link" href="#table">Next</a></li>
-    </ul>
-</nav>
-
-<div class="modal fade" id="Ag_Area" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title text-center" id="exampleModalLabel">Agregar Materia</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group col-sm-12">
-                        <label>Area</label>
-                        <input id="A_Nombre" type="text" class="form-control" placeholder="Area">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="Ag_Add_Area" type="button" class="btn btn-primary">Save changes</button>
+    <div class="modal fade" id="Ag_Area" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="exampleModalLabel">Agregar Area</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group col-sm-12">
+                            <label>Area</label>
+                            <input id="A_Nombre" type="text" class="form-control" placeholder="Area">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="Ag_Add_Area" type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="modal fade" id="Ag_Carrera" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title text-center" id="exampleModalLabel">Agregar Materia</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group col-sm-12">
-                        <label>Carrera</label>
-                        <input id="C_Nombre" type="text" class="form-control" placeholder="Carrera">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label>Nivel</label>
-                        <select id="C_Nivel" class="form-control">
-                            <option value="0" disabled selected>Elige un Nivel</option>
-                            <option value="L">Licenciatura</option>
-                            <option value="M">Maestria</option>
-                            <option value="D">Doctorado</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="Ag_Add_Carrera" type="button" class="btn btn-primary">Save changes</button>
+    <div class="modal fade" id="Ag_Carrera" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="exampleModalLabel">Agregar Carrera</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group col-sm-12">
+                            <label>Carrera</label>
+                            <input id="C_Nombre" type="text" class="form-control" placeholder="Carrera">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Nivel</label>
+                            <select id="C_Nivel" class="form-control">
+                                <option value="0" disabled selected>Elige un Nivel</option>
+                                <option value="L">Licenciatura</option>
+                                <option value="M">Maestria</option>
+                                <option value="D">Doctorado</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="Ag_Add_Carrera" type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-@Scripts.Render("~/bundles/Materias")
+
+    <div class="modal fade" id="Ag_Materia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="exampleModalLabel">Modificar Materia</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group col-sm-6">
+                            <label for="Nombre_Mat_Ed">Materia</label>
+                            <input id="Nombre_Mat_Ed" type="text" class="form-control" placeholder="Materia">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="Carrera_Mat_Ed">Carrera</label>
+                            <select id="Carrera_Mat_Ed" class="form-control">
+                                <option value="" disabled selected>Elige una Carrera</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="Area_Mat_Ed">Area</label>
+                            <select id="Area_Mat_Ed" class="form-control">
+                                <option value="" disabled selected>Elige una Area</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="Ag_Ed_Materia" type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/Materias")

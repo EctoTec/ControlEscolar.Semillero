@@ -12,14 +12,14 @@ namespace ControlEscolar.Controllers.Materias
     public class CarreraController : ApiController
     {
         // GET: api/Carrera
-        public c_Carrera[] Get()
+        public C_Carrera[] Get()
         {
-            List<c_Carrera> LCarrera = new List<c_Carrera>();
+            List<C_Carrera> LCarrera = new List<C_Carrera>();
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
                 foreach (Carrera item in contexto.Carrera)
                 {
-                    LCarrera.Add(new c_Carrera()
+                    LCarrera.Add(new C_Carrera()
                     {
                         Id = item.Car_Id,
                         Nombre = item.Car_Nombre,
@@ -37,7 +37,7 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // POST: api/Carrera
-        public bool Post(c_Carrera carrera)
+        public bool Post(C_Carrera carrera)
         {
             Boolean guardar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
