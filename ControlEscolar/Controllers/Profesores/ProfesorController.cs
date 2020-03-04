@@ -24,7 +24,7 @@ namespace ControlEscolar.Controllers.Profesores
             return guardar;
         }
 
-        public bool DELETE(int Id)
+        public bool Delete(int Id)
         {
             Boolean eliminar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
