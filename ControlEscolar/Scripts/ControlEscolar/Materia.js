@@ -43,8 +43,8 @@ let drawpagination = (desde, hasta) => {
     content = "";
     for (i = desde; i <= hasta; i++) {
         console.log(i)
-        let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
-            + arreglo[i].Carrera + '</td><td>' + arreglo[i].Area + '</td>' +
+        let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Carrera.Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Carrera.Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
+            + arreglo[i].Carrera.Nombre + '</td><td>' + arreglo[i].Area.Nombre + '</td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="Edit_Materia(' + arreglo[i].Id + ')"><i class="material-icons text-primary">edit</i ></button></td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
