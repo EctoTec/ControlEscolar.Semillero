@@ -420,6 +420,7 @@
     <Content Include="Views\Inscripcion\ConsultarMaterias.cshtml" />
     <Content Include="Views\Inscripcion\ConsultarGrupos.cshtml" />
     <Content Include="Views\Home\Grupos.cshtml" />
+    <Content Include="Views\Inscripcion\AlumnosGpo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

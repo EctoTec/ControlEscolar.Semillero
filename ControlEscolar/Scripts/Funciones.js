@@ -26,6 +26,26 @@ let GuardarDatoss = () => {
     });
 }
 
+let EditarDatos = () => {
+
+}
+
+let BorrarDatos = (Id) => {
+    $.ajax({
+        type: "Delete",
+        url: "/api/DatosAlumnos/" + Id,
+        dataType: "JSON",
+        success: (s) => {
+            datosAlumno();
+            alert('Se elimino alumno correctamente')
+            return s;
+        },
+        error: (e) => {
+            alert('No es posible eliminar alumno ya que se encuentra inscrito al periodo escolar ')
+        }
+    });
+}
+
 let drawSelectCarrera = (arreglo) => {
     let content = carrera.innerHTML;
     for (i of arreglo) {
@@ -43,7 +63,7 @@ let drawTableAlumnos = (arreglo) => {
     content = "";
     for (i of arreglo) {
         let row = '<tr><td>' + getMatricula(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
-            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="BorrarDatos(' + i.Id +'); "><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     table_body.innerHTML = content;
