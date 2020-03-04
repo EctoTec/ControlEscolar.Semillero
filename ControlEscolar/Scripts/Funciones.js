@@ -42,7 +42,7 @@ let drawTableAlumnos = (arreglo) => {
     let content = table_body.innerHTML;
     content = "";
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+        let row = '<tr><td>' + getMatricula(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
@@ -93,4 +93,30 @@ function datosAlumno(){
             return response;
         }
     });
+}
+
+function getMatricula(id)
+{
+    if (id < 10) {
+        id = "000000" + id;
+    }
+    else if (id < 100) {
+        id = "00000" + id;
+    }
+    else if (id < 1000) {
+        id = "0000" + id;
+    }
+    else if (id < 10000) {
+        id = "000" + id;
+    }
+    else if (id < 100000) {
+        id = "00" + id;
+    }
+    else if (id < 1000000) {
+        id = "0" + id;
+    }
+    else if (id >= 1000000) {
+        id = id;
+    }
+    return id;
 }
