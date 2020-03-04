@@ -12,14 +12,14 @@ namespace ControlEscolar.Controllers.Materias
     public class AreaController : ApiController
     {
         // GET: api/Area
-        public c_Area[] Get()
+        public C_Area[] Get()
         {
-            List<c_Area> LArea = new List<c_Area>();
+            List<C_Area> LArea = new List<C_Area>();
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
                 foreach (Models.Area item in contexto.Area)
                 {
-                    LArea.Add(new c_Area()
+                    LArea.Add(new C_Area()
                     {
                         Id = item.Area_Id,
                         Nombre = item.Area_Nombre
@@ -37,7 +37,7 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // POST: api/Area
-        public bool Post(c_Area area)
+        public bool Post(C_Area area)
         {
             Boolean guardar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())

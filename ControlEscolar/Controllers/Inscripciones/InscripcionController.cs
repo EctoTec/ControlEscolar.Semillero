@@ -16,7 +16,7 @@ namespace ControlEscolar.Controllers.Inscripciones
         CursoEscolarEntities db = new CursoEscolarEntities();
         public ActionResult ConsultarMaterias(int id)
         {
-            List<t_Materia> query = db.Alumno
+            List<C_Materia> query = db.Alumno
             .Join(db.Carrera,
                 alumno => alumno.Al_Carrera_Id,
                 carrera => carrera.Car_Id,
@@ -26,7 +26,7 @@ namespace ControlEscolar.Controllers.Inscripciones
                 mat => mat.Carrera.Car_Id,
                 carr => carr.Mat_Carrera_Id,
                 (mat, carr) => new { Materia = mat, Carrera = carr })
-            .Where(postAndMeta => postAndMeta.Materia.Alumno.Al_Id == id).Select(x => new t_Materia { Nombre = x.Carrera.Mat_Nombre, Id=x.Carrera.Mat_Id })
+            .Where(postAndMeta => postAndMeta.Materia.Alumno.Al_Id == id).Select(x => new C_Materia { Nombre = x.Carrera.Mat_Nombre, Id=x.Carrera.Mat_Id })
             .ToList();
             return View(query);
 
