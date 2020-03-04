@@ -179,6 +179,7 @@
     <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\Materias\AreaController.cs" />
     <Compile Include="Controllers\Materias\CarreraController.cs" />
+    <Compile Include="Controllers\PDGruposController.cs" />
     <Compile Include="Controllers\Profesores\ProfesorController.cs" />
     <Compile Include="Controllers\RicardoController.cs" />
     <Compile Include="Controllers\PacoController.cs" />
@@ -426,6 +427,7 @@
     <Folder Include="Views\Daniela\" />
     <Folder Include="Views\Josue\" />
     <Folder Include="Views\Paco\" />
+    <Folder Include="Views\PDGrupos\" />
     <Folder Include="Views\Profesor\" />
   </ItemGroup>
   <ItemGroup>

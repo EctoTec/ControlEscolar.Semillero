@@ -22,25 +22,6 @@ let GuardarDatosGrupo = () => {
     });
 }
 
-let BorrarDatosGrupo = () => {
-    $('#Ag_Grupo').modal('show');
-    $.ajax({
-        type: "PUT",
-        url: "/api/Grupos/Id",
-        data: {
-            "Materia": select_Materia.value,
-            "Profesor": select_Profesor.value,
-            "Turno": input_Turno.value
-        },
-        dataType: "JSON",
-        success: (response) => {
-            $('#Ag_Grupo').modal('hide');
-            location.reload();
-            return response;
-        }
-    });
-}
-
 let Table = document.getElementById("datos_Grupo");
 
 let drawpagination = (S, M) => {
@@ -49,8 +30,8 @@ let drawpagination = (S, M) => {
     content = "";
     for (i = S; i <= M; i++) {
         console.log(i);
-        let row = '<tr><td>' + (arreglo[i].Id + 1) + '</td><td>' + arreglo[i].Materia + '</td><td>' + arreglo[i].Profesor + '</td><td>' + arreglo[i].Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="BorrarDatosGrupo();"><i class="material-icons text-primary">edit</i ></button></td>' +
-            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+        let row = '<tr><td>' + (arreglo[i].Id + 1) + '</td><td>' + arreglo[i].Materia + '</td><td>' + arreglo[i].Profesor + '</td><td>' + arreglo[i].Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="grupoEditar(this);" data-id=' + (arreglo[i].Id + 1) + '><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" data-id=' + (arreglo[i].Id + 1) + '><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     Table.innerHTML = content;
