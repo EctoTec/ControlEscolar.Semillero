@@ -41,10 +41,11 @@ btn_Add_Profesor.onclick = () => {
         dataType: "JSON",
         success: (response) => {
             $('#modalProfesores').modal('hide');
-            $('#modalAgregadoMensaje').modal('show');
+            cargarProfesor();
+            $('#modalAddProf').modal('show');
             setTimeout(function () {
-                $('#modalAgregado').modal('hide');
-            }, 2000);
+                $('#modalAddProf').modal('hide');
+            }, 1500);
             return response;
         }
     });
@@ -96,20 +97,23 @@ function getNumeroProfesor(id) {
 window.onload = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Area",
-        dataType: "JSON",
-        success: (response) => {
-            drawSelectArea(response);
-            return response;
-        }
-    });
-
-    $.ajax({
-        type: "GET",
         url: "/api/Profesor",
         dataType: "JSON",
         success: (response) => {
             drawTableProfesor(response);
+            return response;
+        }
+    });
+}
+
+window.onload = () => {
+    cargarProfesor();
+    $.ajax({
+        type: "GET",
+        url: "/api/Area",
+        dataType: "JSON",
+        success: (response) => {
+            drawSelectArea(response);
             return response;
         }
     });
