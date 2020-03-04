@@ -1,25 +1,24 @@
-<br>
+
 <h2>Alumnos</h2>
 
-<div>
+
+<!--AGREGAR-->
+<div class="col-12">
     <form class="form-inline active-cyan-4">
-        <div class="input-group">
-            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Matricula"
-                   aria-label="Search" id="inputBuscar" onkeyup="Buscar();">
-            <i class="fas fa-search" aria-hidden="true"></i>
-            <span class="input-group-btn glyphicon-object-align-top">
-                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
+        <div class="col-6 text-left">
+            <div class="input-group">
+                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Busca por Matricula" aria-label="Search" id="inputBuscar" onkeyup="Buscar();"><div class="col-6 text-right"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button></div>
+
+                <!--<i class="fas fa-search" aria-hidden="true"></i>
+                <span class="input-group-btn glyphicon-object-align-top">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>-->
+            </div>
         </div>
     </form>
 </div>
-
-<!--AGREGAR-->
-<div class="col-sm-12 text-center">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAlumnos">Agregar</button>
-</div>
 <br>
-<!--MODAL-->
+<!--MODAL DATOS ALUMNO-->
 <div class="modal" id="modalAlumnos" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -47,13 +46,13 @@
                     <div class="form-group">
                         <label for="formGroupCarrera">Carrera</label>
                         <select class="form-control" id="Carrera">
-                            <option selected>Opciones...</option>
+                            <option selected>Selecciona Una Carrera</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="formGroupSemestre">Semestre</label>
                         <input type="number" class="form-control" id="Semestre" min="1" max="10">
-                    </div>
+                    </div>-->
                 </form>
             </div>
 
@@ -61,6 +60,26 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" onclick="GuardarDatoss();">Guardar</button>
             </div>
+        </div>
+    </div>
+</div>
+<!--MODAL AGREGADO CORRECTAMENTE-->
+<div class="modal" id="modalAgregado" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>-->
+            <div class="modal-body">
+                <p>Se agrego al alumno correctamente!</p>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>-->
         </div>
     </div>
 </div>
@@ -73,9 +92,11 @@
             <th scope="col">Apellido</th>
             <th scope="col">Carrera</th>
             <th scope="col">Semestre</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody id="cuerpo_tabla"></tbody>
 </table>
-<br/>
+<br />
 @Scripts.Render("~/bundles/Funciones")

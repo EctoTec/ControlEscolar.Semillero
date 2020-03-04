@@ -11,34 +11,52 @@ let GuardarDatoss = () => {
             "Nombre": nombre.value,
             "Apellidos": apellidos.value,
             "Carrera": carrera.value,
-            "Semestres": semestre.value
+            "Semestres": 1
         },
         dataType: "JSON",
         success: (response) => {
             $('#modalAlumnos').modal('hide');
+            datosAlumno();
+            $('#modalAgregado').modal('show');
+            setTimeout(function () {
+                    $('#modalAgregado').modal('hide');
+                }, 2000);
             return response;
         }
     });
+}
+
+let drawSelectCarrera = (arreglo) => {
+    let content = carrera.innerHTML;
+    for (i of arreglo) {
+
+        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        content = content + option;
+    }
+    carrera.innerHTML = content;
 }
 
 let table_body = document.getElementById("cuerpo_tabla");
 
 let drawTableAlumnos = (arreglo) => {
     let content = table_body.innerHTML;
+    content = "";
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td></tr>';
+        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     table_body.innerHTML = content;
 }
 
 window.onload = () => {
+    datosAlumno();
     $.ajax({
         type: "GET",
-        url: "/api/DatosAlumnos",
+        url: "/api/Carrera",
         dataType: "JSON",
         success: (response) => {
-            drawTableAlumnos(response);
+            drawSelectCarrera(response);
             return response;
         }
     });
@@ -63,4 +81,16 @@ function Buscar() {
             }
         }
     }
+}
+
+function datosAlumno(){
+    $.ajax({
+        type: "GET",
+        url: "/api/DatosAlumnos",
+        dataType: "JSON",
+        success: (response) => {
+            drawTableAlumnos(response);
+            return response;
+        }
+    });
 }

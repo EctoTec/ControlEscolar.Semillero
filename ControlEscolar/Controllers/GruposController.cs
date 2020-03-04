@@ -19,6 +19,7 @@ namespace ControlEscolar.Controllers.Grupos
                 {
                     datosGrupo.Add(new d_Grupos()
                     {
+                        Id = item.Grp_Id,
                         Materia = item.Grp_Materia_Id,
                         Profesor = item.Grp_Profesor_Id,
                         Turno = item.Grp_Turno
@@ -28,7 +29,6 @@ namespace ControlEscolar.Controllers.Grupos
             return datosGrupo.ToArray();
         }
 
-
         public bool Post(d_Grupos grupos)
         {
             Boolean guardar = false;
@@ -36,6 +36,7 @@ namespace ControlEscolar.Controllers.Grupos
             {
                 Models.Grupo grupos1 = new Models.Grupo
                 {
+                    Grp_Id = grupos.Id,
                     Grp_Materia_Id = grupos.Materia,
                     Grp_Profesor_Id = grupos.Profesor,
                     Grp_Turno = grupos.Turno
@@ -47,6 +48,31 @@ namespace ControlEscolar.Controllers.Grupos
             return guardar;
         }
 
+        //get 
+        public bool DELETE(int Grp_Id)
+        {
+            Boolean delete = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var DelTable = contexto.Grupo.Find(Grp_Id);
+                contexto.Grupo.Remove(DelTable);
+                contexto.SaveChanges();
+            }
+            return delete;
+        }
 
+        public void PUT(int Grp_Id, Models.Grupo grupo)
+        {
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                var EditTable = contexto.Grupo.Find(Grp_Id);
+
+                EditTable.Grp_Materia_Id = grupo.Grp_Materia_Id;
+                EditTable.Grp_Profesor_Id = grupo.Grp_Profesor_Id;
+                EditTable.Grp_Turno = grupo.Grp_Turno;
+                contexto.Entry(EditTable).State = System.Data.Entity.EntityState.Modified;
+                contexto.SaveChanges();
+            }
+        }
     }
 }
