@@ -11,10 +11,14 @@ let input_M_Area = document.getElementById("Area_Mat");
 let input_M_Nombre = document.getElementById("Nombre_Mat");
 
 let input_M_Table = document.getElementById("T_body_content");
+let input_C_Table = document.getElementById("T_body_content_carrera");
+let input_A_Table = document.getElementById("T_body_content_area");
 let load = document.getElementById("load_data");
 let elementLoad = "";
 
 let arreglo_M = [];
+let arreglo_C = [];
+let arreglo_A = [];
 
 // dibujar en pantalla
 let drawSelectCarrera = (arreglo) => {
@@ -46,7 +50,7 @@ let drawpagination = (desde, hasta) => {
         let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Carrera.Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Carrera.Nivel == 'M' ? 'Maestria' : 'Doctorado')) + '</td><td>'
             + arreglo[i].Carrera.Nombre + '</td><td>' + arreglo[i].Area.Nombre + '</td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="Edit_Materia(' + arreglo[i].Id + ')"><i class="material-icons text-primary">edit</i ></button></td>' +
-            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="Delete_Materia('+arreglo[i].Id+')"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_M_Table.innerHTML = content;
@@ -69,17 +73,51 @@ let drawTableMateria = (arreglo) => {
     drawpagination(0, 4);
 }
 
+let drawTableCarrera = (arreglo) => {
+    arreglo_M = arreglo;
+    let paginacion = document.getElementById('paginacion');
+    let totalRows = arreglo.length;
+    let numerosPaginacion = totalRows / 5;
+    console.log(numerosPaginacion);
+    paginacion.innerHTML = "";
+    let number = '';
+    console.log(Math.ceil(numerosPaginacion))
+    for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+            i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows - 1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
+    }
+    paginacion.innerHTML = number;
+    drawpagination(0, 4);
+}
+
+let drawTableArea = (arreglo) => {
+    arreglo_M = arreglo;
+    let paginacion = document.getElementById('paginacion');
+    let totalRows = arreglo.length;
+    let numerosPaginacion = totalRows / 5;
+    console.log(numerosPaginacion);
+    paginacion.innerHTML = "";
+    let number = '';
+    console.log(Math.ceil(numerosPaginacion))
+    for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+            i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows - 1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
+    }
+    paginacion.innerHTML = number;
+    drawpagination(0, 4);
+}
+
 let Agregar_Materia = (id = null) => {
-    if (input_M_Area.value !== "" && input_M_Carrera.value !== "" && input_M_Nombre !== "") {
-        console.log(id);
-        if (id == null) {
+    if (id == null) {
+        if (input_M_Area.value !== "" && input_M_Carrera.value !== "" && input_M_Nombre !== "") {
+            console.log(id);
             $.ajax({
                 type: "POST",
                 url: "/api/Materia",
                 data: {
                     "Nombre": input_M_Nombre.value,
-                    "Carrera": input_M_Carrera.value,
-                    "Area": input_M_Area.value
+                    "Carrera": { "Id":input_M_Carrera.value },
+                    "Area": { "Id": input_M_Area.value }
                 },
                 dataType: "JSON",
                 success: (response) => {
@@ -88,26 +126,25 @@ let Agregar_Materia = (id = null) => {
                     return response;
                 }
             });
-        }
-        else {
-            $.ajax({
-                type: "PUT",
-                url: "/api/Materia/"+id,
-                data: {
-                    "Nombre": input_M_Nombre.value,
-                    "Carrera": input_M_Carrera.value,
-                    "Area": input_M_Area.value
-                },
-                dataType: "JSON",
-                success: (response) => {
-                    GetMateria();
-                    alert("Se ha agregado la materia satisfactoriamente");
-                    return response;
-                }
-            });
+        } else {
+            alert('Agrege todos los campos')
         }
     } else {
-        alert('Agrege todos los campos')
+        $.ajax({
+            type: "PUT",
+            url: "/api/Materia/" + id,
+            data: {
+                "Carrera": { "Id": document.getElementById("Carrera_Mat_Ed").value },
+                "Area": { "Id": document.getElementById("Area_Mat_Ed").value },
+                "Nombre": document.getElementById("Nombre_Mat_Ed").value
+            },
+            dataType: "JSON",
+            success: (response) => {
+                GetMateria();
+                alert("Se ha agregado la materia satisfactoriamente");
+                return response;
+            }
+        });
     }
 }
 
@@ -208,8 +245,8 @@ let Edit_Materia = (id) => {
     let objeto = arreglo_M.find(e => e.Id == id);
     if (objeto != null) {
         console.log(objeto);
-        document.getElementById("Carrera_Mat_Ed").value = objeto.Carrera;
-        document.getElementById("Area_Mat_Ed").value = objeto.Area;
+        document.getElementById("Carrera_Mat_Ed").value = objeto.Carrera.Id;
+        document.getElementById("Area_Mat_Ed").value = objeto.Area.Id;
         document.getElementById("Nombre_Mat_Ed").value = objeto.Nombre;
         document.getElementById('Ag_Ed_Materia').onclick = () => { Agregar_Materia(id) };
         $('#Ag_Materia').modal('show');
@@ -222,6 +259,22 @@ let Edit_Carrera = (id) => {
 
 let Edit_Area = (id) => {
 
+}
+
+let Delete_Materia = (id) => {
+    $.ajax({
+        type: "DELETE",
+        url: "/api/Materia/"+id,
+        dataType: "JSON",
+        success: (response) => {
+            GetMateria();
+            return response;
+        },
+        error: (err) => {
+            console.log(err);
+            alert(err.Message +'No se puede eliminar este dato ya que esta conectado con otras tablas');
+        }
+    });
 }
 
 //funcion para ordenar
