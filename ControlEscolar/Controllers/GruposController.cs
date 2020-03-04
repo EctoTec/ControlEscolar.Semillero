@@ -61,7 +61,35 @@ namespace ControlEscolar.Controllers.Grupos
             return delete;
         }
 
-        public void PUT(int Grp_Id, Models.Grupo grupo)
+        public IHttpActionResult Put(Models.Grupo grupo)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("No es un modelo valido");
+
+            using(var contexto = new CursoEscolarEntities())
+            {
+                var existGrupo = contexto.Grupo.Where(g => g.Grp_Id == grupo.Grp_Id).FirstOrDefault<Models.Grupo>();
+
+                if(existGrupo != null)
+                {
+                    existGrupo.Grp_Materia_Id = grupo.Grp_Materia_Id;
+                    existGrupo.Grp_Profesor_Id = grupo.Grp_Profesor_Id;
+                    existGrupo.Grp_Turno = grupo.Grp_Turno;
+
+                    contexto.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+                return Ok();
+            }
+        }
+
+        //Método PUT para EDITAR grupos
+        /*
+        public IHttpActionResult PUT(int Grp_Id, Models.Grupo grupo)
         {
             using(CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
@@ -73,6 +101,8 @@ namespace ControlEscolar.Controllers.Grupos
                 contexto.Entry(EditTable).State = System.Data.Entity.EntityState.Modified;
                 contexto.SaveChanges();
             }
+            return Ok();
         }
+        */
     }
 }
