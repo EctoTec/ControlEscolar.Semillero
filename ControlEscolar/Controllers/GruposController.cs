@@ -48,7 +48,34 @@ namespace ControlEscolar.Controllers.Grupos
             return guardar;
         }
 
-        //get 
+        public bool Put(d_Grupos Cgrupo, int id)
+        {
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Models.Grupo editGrupo = (from Grupo in contexto.Grupo
+                                          where Grupo.Grp_Id == id
+                                          select Grupo).FirstOrDefault();
+                editGrupo.Grp_Materia_Id = Cgrupo.Materia;
+                editGrupo.Grp_Profesor_Id = Cgrupo.Profesor;
+                editGrupo.Grp_Turno = Cgrupo.Turno;
+                contexto.SaveChanges();
+            }
+            return true;
+        }
+
+        public void Delete(int id)
+        {
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Models.Grupo BorrarGrupo = (from Grupo in contexto.Grupo
+                                            where Grupo.Grp_Id == id
+                                            select Grupo).FirstOrDefault();
+                contexto.Grupo.Remove(BorrarGrupo);
+                contexto.SaveChanges();
+            }
+        }
+
+        /*
         public bool DELETE(int Grp_Id)
         {
             Boolean delete = false;
@@ -60,7 +87,6 @@ namespace ControlEscolar.Controllers.Grupos
             }
             return delete;
         }
-
         public IHttpActionResult Put(Models.Grupo grupo)
         {
             if (!ModelState.IsValid)
@@ -86,9 +112,6 @@ namespace ControlEscolar.Controllers.Grupos
                 return Ok();
             }
         }
-
-        //Método PUT para EDITAR grupos
-        /*
         public IHttpActionResult PUT(int Grp_Id, Models.Grupo grupo)
         {
             using(CursoEscolarEntities contexto = new CursoEscolarEntities())
