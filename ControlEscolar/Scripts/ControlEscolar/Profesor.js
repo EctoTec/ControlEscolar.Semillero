@@ -59,7 +59,9 @@ let drawSelectArea = (arreglo) => {
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area + '</td><td><button type="button" class="btn btn-secondary">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td></tr>';
+        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_P_Table.innerHTML = content;
