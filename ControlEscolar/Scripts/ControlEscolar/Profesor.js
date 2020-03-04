@@ -41,6 +41,10 @@ btn_Add_Profesor.onclick = () => {
         dataType: "JSON",
         success: (response) => {
             $('#modalProfesores').modal('hide');
+            $('#modalAgregadoMensaje').modal('show');
+            setTimeout(function () {
+                $('#modalAgregado').modal('hide');
+            }, 2000);
             return response;
         }
     });
@@ -59,12 +63,37 @@ let drawSelectArea = (arreglo) => {
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
     for (i of arreglo) {
-        let row = '<tr><td>' + i.Id + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
+        let row = '<tr><td>' + getNumeroProfesor(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
             '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
             '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     input_P_Table.innerHTML = content;
+}
+
+function getNumeroProfesor(id) {
+    if (id < 10) {
+        id = "000000" + id;
+    }
+    else if (id < 100) {
+        id = "00000" + id;
+    }
+    else if (id < 1000) {
+        id = "0000" + id;
+    }
+    else if (id < 10000) {
+        id = "000" + id;
+    }
+    else if (id < 100000) {
+        id = "00" + id;
+    }
+    else if (id < 1000000) {
+        id = "0" + id;
+    }
+    else if (id >= 1000000) {
+        id = id;
+    }
+    return id;
 }
 
 window.onload = () => {
@@ -89,6 +118,7 @@ window.onload = () => {
     });
 }
 
+//Buscar
 function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");
