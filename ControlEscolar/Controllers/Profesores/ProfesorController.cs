@@ -24,13 +24,13 @@ namespace ControlEscolar.Controllers.Profesores
             return guardar;
         }
 
-        public bool Delete(int Id)
+        public bool Delete(int id)
         {
             Boolean eliminar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
                 Profesor delProfesor = (from Prof in contexto.Profesor
-                                        where Prof.Prf_Id == Id
+                                        where Prof.Prf_Id == id
                                         select Prof).FirstOrDefault();
                 contexto.Profesor.Remove(delProfesor);
                 contexto.SaveChanges();

@@ -6,22 +6,23 @@ let btn_Del_Profesor = document.getElementById("Del_Prfoesor");
 let input_P_Nombre = document.getElementById("P_Nombre");
 let input_P_Apellido = document.getElementById("P_Apellido");
 let input_P_Area = document.getElementById("P_Area");
-//let input_P_Del_Id = document.getElementById("Id_Eliminar");
 
 //---
 let input_M_Area = document.getElementById("Area_Mat");
 let input_P_Table = document.getElementById("T_Prof_body_content");
 
-function eliminar(Id){
+
+let eliminar = (Id) => {
     $.ajax({
         type: "DELETE",
-        url: "/api/Profesor",
-        data: {
-            Id: Id.value
-        },
+        url: "/api/Profesor/" + Id,
         dataType: "JSON",
         success: (response) => {
-            $(alert("Eliminado con Exito"));
+            cargarProfesor();
+            $('#modaldelProf').modal('show');
+            setTimeout(function () {
+                $('#modaldelProf').modal('hide');
+            }, 1000);
             return response;
         }
     });
@@ -45,7 +46,7 @@ btn_Add_Profesor.onclick = () => {
             $('#modalAddProf').modal('show');
             setTimeout(function () {
                 $('#modalAddProf').modal('hide');
-            }, 1500);
+            }, 1000);
             return response;
         }
     });
@@ -63,9 +64,10 @@ let drawSelectArea = (arreglo) => {
 
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
+    content = "";
     for (i of arreglo) {
         let row = '<tr><td>' + getNumeroProfesor(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
-            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"  onclick="editar(' + i.Id + ',' + i.Nombre + ',' + i.Apellido + ',' +i.Area+');"><i class="material-icons text-primary">edit</i ></button></td>' +
             '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="eliminar('+ i.Id +');"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
@@ -97,24 +99,24 @@ function getNumeroProfesor(id) {
 function cargarProfesor() {
     $.ajax({
         type: "GET",
-        url: "/api/Area",
+        //url: "/api/Area",
         url: "/api/Profesor",
         dataType: "JSON",
         success: (response) => {
-            drawSelectArea(response);
+           // drawSelectArea(response);
             drawTableProfesor(response);
             return response;
         }
     });
 }
 
-window.onload = () => {
+let cargarArea = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Profesor",
+        url: "/api/Area",
         dataType: "JSON",
         success: (response) => {
-            drawTableProfesor(response);
+            drawSelectArea(response);
             return response;
         }
     });
@@ -122,15 +124,7 @@ window.onload = () => {
 
 window.onload = () => {
     cargarProfesor();
-    $.ajax({
-        type: "GET",
-        url: "/api/Area",
-        dataType: "JSON",
-        success: (response) => {
-            drawSelectArea(response);
-            return response;
-        }
-    });
+    cargarArea();
 }
 
 //Buscar
