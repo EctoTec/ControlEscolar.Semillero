@@ -51,13 +51,37 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // PUT: api/Carrera/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, C_Carrera carrera)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                if (contexto.Carrera.Count() > 0)
+                {
+                    Carrera carrera1 = contexto.Carrera.Where(e => e.Car_Id == id).FirstOrDefault();
+                    if (carrera1 != null)
+                    {
+                        carrera1.Car_Nivel = carrera.Nivel;
+                        carrera1.Car_Nombre = carrera.Nombre;
+                        contexto.SaveChanges();
+                        guardar = true;
+                    }
+                }
+            }
+            return guardar;
         }
 
         // DELETE: api/Carrera/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Carrera carrera = contexto.Carrera.Where(e => e.Car_Id == id).FirstOrDefault();
+                contexto.Carrera.Remove(carrera);
+                contexto.SaveChanges();
+            }
+            return guardar;
         }
     }
 }
