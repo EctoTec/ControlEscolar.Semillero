@@ -11,7 +11,7 @@ namespace ControlEscolar.Models.ViewModel
         public int IdMateria { get; set; }
         public String NombreMateria { get; set; }
         public int IdCarrera { get; set; }
-
         public int IdGpo { get; set; }
+        public String NombreCarr { get; set; }
     }
 }

@@ -39,29 +39,29 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center">Agregar Alumno</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="Limpiar();">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <!--<p>Modal body text goes here.</p>-->
-                <form>
+                <form id="inputAlumno">
                     <!-- <div class="form-group">
                         <label for="formGroupId">Id</label>
                         <input type="number" class="form-control" id="Id">
                     </div>-->
                     <div class="form-group">
                         <label for="formGroupNombre">Nombre</label>
-                        <input type="text" class="form-control" id="Nombre">
+                        <input type="text" class="form-control" id="Nombre" name="Nombre">
                     </div>
                     <div class="form-group">
                         <label for="formGroupApellidos">Apellidos</label>
-                        <input type="text" class="form-control" id="Apellidos">
+                        <input type="text" class="form-control" id="Apellidos" name="Apellidos">
                     </div>
                     <div class="form-group">
                         <label for="formGroupCarrera">Carrera</label>
                         <select class="form-control" id="Carrera">
-                            <option selected>Selecciona Una Carrera</option>
+                            <option selected value="">Selecciona Una Carrera</option>
                         </select>
                     </div>
                     <!--<div class="form-group">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Limpiar();">Cancelar</button>
                 <button type="button" class="btn btn-primary" onclick="GuardarDatoss();">Guardar</button>
             </div>
         </div>
