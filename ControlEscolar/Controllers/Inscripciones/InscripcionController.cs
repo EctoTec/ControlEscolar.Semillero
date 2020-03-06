@@ -63,6 +63,8 @@ namespace ControlEscolar.Controllers.Inscripciones
             List<Models.Grupo> cGrupo = db.Grupo.ToList();
             ViewBag.Grupo = cGrupo;
 
+
+
             return View();
         }
     }

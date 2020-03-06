@@ -24,3 +24,11 @@ function addGpo(id) {
         }
     });
 }
+
+//VARIABLES ALUMNOSGPO
+let selectCarrera = document.getElementById("selectCarrera").value;
+let selectMateria = document.getElementById("selectMateria").value;
+let selectGrupo = document.getElementById("selectGrupo").value;
+
+let btnConsultar = document.getElementById("btnConsultar");
+

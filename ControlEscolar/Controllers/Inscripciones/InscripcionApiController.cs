@@ -12,9 +12,33 @@ namespace ControlEscolar.Controllers.Inscripciones
     public class InscripcionApiController : ApiController
     {
         // GET: api/InscripcionApi
-        public IEnumerable<string> Get()
+        public List<InscripcionModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            using(CursoEscolarEntities db = new CursoEscolarEntities())
+            {
+                List<InscripcionModel> query = db.Alumno
+                    .Join(db.Carrera,
+                        alumCar => alumCar.Al_Carrera_Id,
+                        carrId => carrId.Car_Id,
+                        (alumCarr, carrId) => new { Alumno = alumCarr, Carrera = carrId })
+
+                    .Join(db.Inscripcion,
+                        idAl => idAl.Alumno.Al_Id,
+                        idIns => idIns.Ins_Alumno_Id,
+                        (idAl, idIns)=>new { Inscripcion = idIns, Alumno = idAl})
+
+                    .Join(db.Materia,
+                        matCarr => matCarr.Alumno.Carrera.Car_Id,
+                        carrMat => carrMat.Mat_Carrera_Id,
+                        (matCarr, carrMat) => new { Materia = matCarr, Carrera = carrMat })
+                    .Select(x => new InscripcionModel { NombreMateria = x.Carrera.Mat_Nombre, NombreCarr = x.Carrera.Carrera.Car_Nombre,
+                        IdAlumno = x.Materia.Alumno.Alumno.Al_Id, IdGpo = x.Materia.Inscripcion.Ins_Grupo_Id, IdCarrera=x.Carrera.Carrera.Car_Id,
+                        NombreAlumno=(x.Materia.Alumno.Alumno.Al_Nombre + " " + x.Materia.Alumno.Alumno.Al_Apellido),
+                        IdInscripcion=x.Materia.Inscripcion.Ins_Id, IdMateria=x.Carrera.Mat_Id})
+                    .ToList();
+
+                return query;
+            }
         }
 
         // GET: api/InscripcionApi/5

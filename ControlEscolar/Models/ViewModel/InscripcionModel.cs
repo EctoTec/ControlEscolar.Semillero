@@ -11,7 +11,16 @@ namespace ControlEscolar.Models.ViewModel
         public int IdMateria { get; set; }
         public String NombreMateria { get; set; }
         public int IdCarrera { get; set; }
-        public int IdGpo { get; set; }
+        public Nullable<int> IdGpo { get; set; }
         public String NombreCarr { get; set; }
+        public String NombreAlumno { get; set; }
+        public int IdInscripcion { get; set; }
+    }
+
+    public class AlumnoGpoModel
+    {
+        public Alumno Alumno { get; set; }
+        public Grupo Grupo { get; set; }
+        public int Inscripcion { get; set; }
     }
 }
