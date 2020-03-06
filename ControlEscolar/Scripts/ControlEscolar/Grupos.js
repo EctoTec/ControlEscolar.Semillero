@@ -134,7 +134,7 @@ let drawSelectMateria = (arreglo) => {
 let drawSelectProfesor = (arreglo) => {
     let content = select_Profesor.innerHTML;
     for (i of arreglo) {
-        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + ' ' +i.Apellido + '</option>';
         content = content + option;
     }
     select_Profesor.innerHTML = content;
@@ -159,6 +159,7 @@ function myFunction() {
         }
     }
 }
+
 
 /* FUNCION PARA BUSCAR DE ACUERDO A LETRAS NO NUMEROS
 function doSearch() {
