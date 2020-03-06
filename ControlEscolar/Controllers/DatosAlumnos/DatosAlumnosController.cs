@@ -45,6 +45,7 @@ namespace ControlEscolar.Controllers.DatosAlumnos
                                 Nombre = alu.Al_Nombre,
                                 Apellidos = alu.Al_Apellido,
                                 Carrera = car.Car_Nombre,
+                                Carrera_Id = car.Car_Id,
                                 Semestres = alu.Al_Semestre
                             };
                 LAlum = query.ToList();

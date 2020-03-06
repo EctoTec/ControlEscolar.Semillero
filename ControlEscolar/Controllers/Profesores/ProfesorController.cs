@@ -24,18 +24,34 @@ namespace ControlEscolar.Controllers.Profesores
             return guardar;
         }
 
-        public bool Delete(int Id)
+        public bool Delete(int id)
         {
             Boolean eliminar = false;
             using (CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
                 Profesor delProfesor = (from Prof in contexto.Profesor
-                                        where Prof.Prf_Id == Id
+                                        where Prof.Prf_Id == id
                                         select Prof).FirstOrDefault();
                 contexto.Profesor.Remove(delProfesor);
                 contexto.SaveChanges();
             }
             return eliminar;
+        }
+
+        public bool Put(c_Profesores prfs ,int id)
+        {
+            using(CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Profesor editProfesor = (from Prof in contexto.Profesor
+                                         where Prof.Prf_Id == id
+                                         select Prof).FirstOrDefault();
+                editProfesor.Prf_Nombre = prfs.Nombre;
+                editProfesor.Prf_Apellido = prfs.Apellido;
+                editProfesor.Prf_Area_Id = prfs.Area;
+                contexto.SaveChanges();
+
+            }
+            return true;
         }
 
 
@@ -51,7 +67,8 @@ namespace ControlEscolar.Controllers.Profesores
                                 Id = p.Prf_Id,
                                 Nombre = p.Prf_Nombre,
                                 Apellido = p.Prf_Apellido,
-                                Area = a.Area_Nombre
+                                Area = a.Area_Nombre,
+                                Area_Id = a.Area_Id
                             };
                 LProf = query.ToList();
             }

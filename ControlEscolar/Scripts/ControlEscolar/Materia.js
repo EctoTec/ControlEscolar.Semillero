@@ -20,7 +20,7 @@ let arreglo_M = [];
 let arreglo_C = [];
 let arreglo_A = [];
 
-// dibujar en pantalla
+// DIBUJA EN PANTALLA LOS SELECTS DE CARRERA
 let drawSelectCarrera = (arreglo) => {
     let content = input_M_Carrera.innerHTML;
     for(i of arreglo) {
@@ -30,7 +30,7 @@ let drawSelectCarrera = (arreglo) => {
     input_M_Carrera.innerHTML = content;
     document.getElementById("Carrera_Mat_Ed").innerHTML = content;
 }
-
+//DIBUJA LOS SELECTS DE AREA
 let drawSelectArea = (arreglo) => {
     let content = input_M_Area.innerHTML;
     for (i of arreglo) {
@@ -40,7 +40,7 @@ let drawSelectArea = (arreglo) => {
     input_M_Area.innerHTML = content;
     document.getElementById("Area_Mat_Ed").innerHTML = content;
 }
-
+//DIBUJA LOS RENGLONES DEPENDIENDO DE LA PAGINACION DADA DE MATERIA
 let drawpagination = (desde, hasta) => {
     arreglo = arreglo_M;
     let content = input_M_Table.innerHTML;
@@ -55,7 +55,7 @@ let drawpagination = (desde, hasta) => {
     }
     input_M_Table.innerHTML = content;
 }
-
+//DIBUJA LAS PAGINACIONES DE MATERIA DEPENDIENDO DE EL TOTAL DEL ARREGLO
 let drawTableMateria = (arreglo) => {
     arreglo_M = arreglo;
     let paginacion = document.getElementById('paginacion');
@@ -72,10 +72,38 @@ let drawTableMateria = (arreglo) => {
     paginacion.innerHTML = number;
     drawpagination(0, 4);
 }
-
+//DIBUJA LOS RENGLONES DEPENDIENDO DE LAS PAGINACIONES DE CARRERA
+let drawpaginationCarrera = (desde, hasta) => {
+    arreglo = arreglo_C;
+    let content = input_C_Table.innerHTML;
+    content = "";
+    for (i = desde; i <= hasta; i++) {
+        console.log(i)
+        let row = '<tr><td>' + arreglo[i].Nombre + '</td><td>' + (arreglo[i].Nivel == 'L' ? 'Licenciatura' : (arreglo[i].Nivel == 'M' ? 'Maestria' : 'Doctorado')) +'</td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="Edit_Carrera(' + arreglo[i].Id + ')"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="Delete_Carrera(' + arreglo[i].Id + ')"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+        content = content + row;
+    }
+    input_C_Table.innerHTML = content;
+}
+//DIBUJA EN PANTALLA LOS RENGLONES DEPENDIENDO DE LAS PAGINACIONES DE EL AREA
+let drawpaginationArea = (desde, hasta) => {
+    arreglo = arreglo_A;
+    let content = input_A_Table.innerHTML;
+    content = "";
+    for (i = desde; i <= hasta; i++) {
+        console.log(i)
+        let row = '<tr><td>' + arreglo[i].Nombre + '</td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="Edit_Area(' + arreglo[i].Id + ')"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="Delete_Area(' + arreglo[i].Id + ')"><i class="material-icons text-danger">delete</i ></button></td></tr>';
+        content = content + row;
+    }
+    input_A_Table.innerHTML = content;
+}
+//DIBUJA EN PANTALLA LAS PAGINACIONES DE CARRERA DEPENDIENDO DE LA LONGITUD DEL ARREGLO
 let drawTableCarrera = (arreglo) => {
-    arreglo_M = arreglo;
-    let paginacion = document.getElementById('paginacion');
+    arreglo_C = arreglo;
+    let paginacion = document.getElementById('paginacionCarrera');
     let totalRows = arreglo.length;
     let numerosPaginacion = totalRows / 5;
     console.log(numerosPaginacion);
@@ -83,16 +111,16 @@ let drawTableCarrera = (arreglo) => {
     let number = '';
     console.log(Math.ceil(numerosPaginacion))
     for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
-        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpaginationCarrera(' +
             i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows - 1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
     }
     paginacion.innerHTML = number;
-    drawpagination(0, 4);
+    drawpaginationCarrera(0, 4);
 }
-
+//DIBUJA EN PANTALLA LA PAGINACIONES DE AREA DEPENDIENDO DE LA LONGITUD DEL ARREGLO
 let drawTableArea = (arreglo) => {
-    arreglo_M = arreglo;
-    let paginacion = document.getElementById('paginacion');
+    arreglo_A = arreglo;
+    let paginacion = document.getElementById('paginacionArea');
     let totalRows = arreglo.length;
     let numerosPaginacion = totalRows / 5;
     console.log(numerosPaginacion);
@@ -100,13 +128,13 @@ let drawTableArea = (arreglo) => {
     let number = '';
     console.log(Math.ceil(numerosPaginacion))
     for (i = 0; i < Math.ceil(numerosPaginacion); i++) {
-        number = number + '<li class="page-item"><button class="page-link" onclick="drawpagination(' +
+        number = number + '<li class="page-item"><button class="page-link" onclick="drawpaginationArea(' +
             i * 5 + ',' + ((i + 1 > numerosPaginacion) ? totalRows - 1 : ((i + 1) * 5) - 1) + ')">' + (i + 1) + '</button></li>'
     }
     paginacion.innerHTML = number;
-    drawpagination(0, 4);
+    drawpaginationArea(0, 4);
 }
-
+//FUNCION QUE HACE LA FUNCION DE AGREGAR MATERIA A LA BASE DE DATOS SI EL ID ES NULL, SI NO, ESTA HACE UN UPDATE HACIA LA BASE DE DATOS  
 let Agregar_Materia = (id = null) => {
     if (id == null) {
         if (input_M_Area.value !== "" && input_M_Carrera.value !== "" && input_M_Nombre !== "") {
@@ -147,13 +175,30 @@ let Agregar_Materia = (id = null) => {
         });
     }
 }
-
-//actions on buttons
-btn_Add_Area.onclick = () => {
-    if (input_A_Nombre.value !== "") {
+//FUNCION QUE HACE LA FUNCION DE AGREGAR UN AREA A LA BASE DE DATOS SI EL ID ES NULL, SI NO, ESTA HACE UN UPDATE HACIA LA BASE DE DATOS
+let Agregar_Area = (id = null) => {
+    if (id == null) {
+        if (input_A_Nombre.value !== "") {
+            $.ajax({
+                type: "POST",
+                url: "/api/Area",
+                data: {
+                    "Nombre": input_A_Nombre.value
+                },
+                dataType: "JSON",
+                success: (response) => {
+                    $('#Ag_Area').modal('hide');
+                    GetArea();
+                    return response;
+                }
+            });
+        } else {
+            alert('Agrege todos los campos')
+        }
+    } else {
         $.ajax({
-            type: "POST",
-            url: "/api/Area",
+            type: "PUT",
+            url: "/api/Area/" + id,
             data: {
                 "Nombre": input_A_Nombre.value
             },
@@ -164,20 +209,33 @@ btn_Add_Area.onclick = () => {
                 return response;
             }
         });
-    } else {
-        alert('Agrege todos los campos')
     }
 }
-
-btn_Add_Materia.onclick = () => {
-    Agregar_Materia();
-}
-
-btn_Add_Carrera.onclick = () => {
-    if (input_C_Nivel.value !== "0" && input_C_Nombre !== "") {
+//FUNCION QUE HACE LA FUNCION DE AGREGAR AREA A LA BASE DE DATOS SI EL ID ES NULL, SI NO, ESTA HACE UN UPDATE HACIA LA BASE DE DATOS
+let Agregar_Carrera = (id = null) => {
+    if (id == null) {
+        if (input_C_Nivel.value !== "0" && input_C_Nombre !== "") {
+            $.ajax({
+                type: "POST",
+                url: "/api/Carrera",
+                data: {
+                    "Nombre": input_C_Nombre.value,
+                    "Nivel": input_C_Nivel.value
+                },
+                dataType: "JSON",
+                success: (response) => {
+                    $('#Ag_Carrera').modal('hide');
+                    GetCarrera();
+                    return response;
+                }
+            });
+        } else {
+            alert('Agrege todos los campos')
+        }
+    } else {
         $.ajax({
-            type: "POST",
-            url: "/api/Carrera",
+            type: "PUT",
+            url: "/api/Carrera/" + id,
             data: {
                 "Nombre": input_C_Nombre.value,
                 "Nivel": input_C_Nivel.value
@@ -189,12 +247,15 @@ btn_Add_Carrera.onclick = () => {
                 return response;
             }
         });
-    } else {
-        alert('Agrege todos los campos')
     }
 }
 
-//al cargar
+//SE LE ASIGNO ACCIONES A LOS BOTONES DE AGREGAR
+btn_Add_Area.onclick = () => {Agregar_Area();}
+btn_Add_Materia.onclick = () => {Agregar_Materia();}
+btn_Add_Carrera.onclick = () => {Agregar_Carrera();}
+
+//fUNCIONES Y ACCIONES QUE SE HACEN AL CARGAR LA PAGINA 
 window.onload = () => {
     //elementLoad = load.innerHTML;
     //load.innerHTML = "<img src='../Content/Imagen/gif-loading-png-2.gif' />";
@@ -203,7 +264,7 @@ window.onload = () => {
     GetMateria();
 }
 
-// trae los datos
+// TRAE LOS DATOS DE MATERIA DE LA BASE DE DATOS Y PINTA EN LA TABLA AL TERMINAR
 let GetMateria = () => {
     $.ajax({
         type: "GET",
@@ -212,11 +273,10 @@ let GetMateria = () => {
         success: (response) => {
             //load.innerHTML = elementLoad;
             drawTableMateria(response);
-            return response;
         }
     });
 }
-
+//FUNCION QUE TRAE LOS DATOS DE CARRERA DE LA BASE DE DATOS Y PINTA EN PANTALLA
 let GetCarrera = () => {
     $.ajax({
         type: "GET",
@@ -224,11 +284,11 @@ let GetCarrera = () => {
         dataType: "JSON",
         success: (response) => {
             drawSelectCarrera(response);
-            return response;
+            drawTableCarrera(response);
         }
     });
 }
-
+//FUNCION QUE TRAE LOS DATOS DE AREA DE LA BASE DE DATOS Y PINTA EN PANTALLA
 let GetArea = () => {
     $.ajax({
         type: "GET",
@@ -236,11 +296,11 @@ let GetArea = () => {
         dataType: "JSON",
         success: (response) => {
             drawSelectArea(response);
-            return response;
+            drawTableArea(response);
         }
     });
 }
-
+//FUNCION QUE SE LLAMA PARA QUE MUESTRE LOS DATOS EN EL MODAL DE EDITAR MATERIA
 let Edit_Materia = (id) => {
     let objeto = arreglo_M.find(e => e.Id == id);
     if (objeto != null) {
@@ -252,15 +312,28 @@ let Edit_Materia = (id) => {
         $('#Ag_Materia').modal('show');
     }
 }
-
+//FUNCION QUE SE LLAMA PARA QU MUESTRE LOS DATOS EN EL MODAL DE CARRERA PARA EDITAR
 let Edit_Carrera = (id) => {
-
+    let objeto = arreglo_C.find(e => e.Id == id);
+    if (objeto != null) {
+        console.log(objeto);
+        input_C_Nombre.value = objeto.Nombre;
+        input_C_Nivel.value = objeto.Nivel;
+        btn_Add_Carrera.onclick = () => { Agregar_Carrera(id); };
+        $('#Ag_Carrera').modal('show');
+    }
 }
-
+//FUNCION QUE SE LLAMA PARA QUE MUESTRE LOS DATOS EN EL MODAL DE AREA PARA EDITAR
 let Edit_Area = (id) => {
-
+    let objeto = arreglo_A.find(e => e.Id == id);
+    if (objeto != null) {
+        console.log(objeto);
+        input_A_Nombre.value = objeto.Nombre;
+        btn_Add_Area.onclick = () => { Agregar_Area(id); };
+        $('#Ag_Area').modal('show');
+    }
 }
-
+//FUNCION QUE ELIMINA DE LA BASE DE DATOS UN ELEMENTO DE MATERIA SI NO ESTA REFERENCIADO EN OTRA TABLA
 let Delete_Materia = (id) => {
     $.ajax({
         type: "DELETE",
@@ -272,17 +345,88 @@ let Delete_Materia = (id) => {
         },
         error: (err) => {
             console.log(err);
-            alert(err.Message +'No se puede eliminar este dato ya que esta conectado con otras tablas');
+            alert(err.responseJSON.Message +' No se puede eliminar este dato ya que esta conectado con otras tablas');
+        }
+    });
+}
+//FUNCION QUE ELIMINA UN ELEMENTO DE CARRERA SI NO ESTA REFERENIADO EN OTRA TABLA
+let Delete_Carrera = (id) => {
+    $.ajax({
+        type: "DELETE",
+        url: "/api/Carrera/" + id,
+        dataType: "JSON",
+        success: (response) => {
+            GetCarrera();
+            return response;
+        },
+        error: (err) => {
+            console.log(err);
+            alert(err.responseJSON.Message + ' No se puede eliminar este dato ya que esta conectado con otras tablas');
+        }
+    });
+}
+//FUNCION QUE ELIMINA UN ELEMENTO DE AREA SI NO ESTA REFERENIADO EN OTRA TABLA
+let Delete_Area = (id) => {
+    $.ajax({
+        type: "DELETE",
+        url: "/api/Area/" + id,
+        dataType: "JSON",
+        success: (response) => {
+            GetArea();
+            return response;
+        },
+        error: (err) => {
+            console.log(err);
+            alert(err.responseJSON.Message + ' No se puede eliminar este dato ya que esta conectado con otras tablas');
         }
     });
 }
 
-//funcion para ordenar
-function myFunction() {
+//FUNCION PARA FILTRAR EN LA TABLA DE MATERIA
+
+function FiltradoMateria() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("myInput1");
     filter = input.value.toUpperCase();
-    table = document.getElementById("table");
+    table = document.getElementById("table_M");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+//FUNCION PARA FILTRAR EN LA TABLA DE CARRERA
+function FiltradoCarrera() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput2");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table_C");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+//FUNCION DE FILTRADO DE LA TABLA AREA
+function FoltradoArea() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput3");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table_A");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];

@@ -2,32 +2,62 @@
 let apellidos = document.getElementById("Apellidos");
 let carrera = document.getElementById("Carrera");
 let semestre = document.getElementById("Semestre");
+let arregloAlumno;
+let idAlumno = null;
 
 let GuardarDatoss = () => {
-    $.ajax({
-        type: "POST",
-        url: "/api/DatosAlumnos",
-        data: {
-            "Nombre": nombre.value,
-            "Apellidos": apellidos.value,
-            "Carrera": carrera.value,
-            "Semestres": 1
-        },
-        dataType: "JSON",
-        success: (response) => {
-            $('#modalAlumnos').modal('hide');
-            datosAlumno();
-            $('#modalAgregado').modal('show');
-            setTimeout(function () {
+    console.log(idAlumno);
+    if (idAlumno == null) {
+        $.ajax({
+            type: "POST",
+            url: "/api/DatosAlumnos",
+            data: {
+                "Nombre": nombre.value,
+                "Apellidos": apellidos.value,
+                "Carrera": carrera.value,
+                "Semestres": 1
+            },
+            dataType: "JSON",
+            success: (response) => {
+                $('#modalAlumnos').modal('hide');
+                datosAlumno();
+                $('#modalAgregado').modal('show');
+                setTimeout(function () {
                     $('#modalAgregado').modal('hide');
                 }, 2000);
-            return response;
-        }
-    });
+                Limpiar();
+                return response;
+            }
+        });
+    }
+    else {
+        $.ajax({
+            type: "Put",
+            url: "/api/DatosAlumnos/" + idAlumno,
+            data: {
+                "Nombre": document.getElementById("Nombre").value,
+                "Apellidos": document.getElementById("Apellidos").value,
+                "Carrera": document.getElementById("Carrera").value
+            },
+            dataType: "JSON",
+            success: function (e) {
+                idAlumno = null;
+                $('#modalAlumnos').modal('hide');
+                datosAlumno();
+            }
+        })
+    }
 }
 
-let EditarDatos = () => {
-
+function modalEditar(id)
+{
+    idAlumno = id;
+    let alumno = arregloAlumno.find(e => e.Id == id)
+    console.log(alumno);
+    document.getElementById("Nombre").value = alumno.Nombre;
+    document.getElementById("Apellidos").value = alumno.Apellidos;
+    document.getElementById("Carrera").value = alumno.Carrera_Id;
+    $('#modalAlumnos').modal('show');
 }
 
 let BorrarDatos = (Id) => {
@@ -59,10 +89,11 @@ let drawSelectCarrera = (arreglo) => {
 let table_body = document.getElementById("cuerpo_tabla");
 
 let drawTableAlumnos = (arreglo) => {
+    arregloAlumno = arreglo;
     let content = table_body.innerHTML;
     content = "";
     for (i of arreglo) {
-        let row = '<tr><td>' + getMatricula(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+        let row = '<tr><td>' + getMatricula(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellidos + '</td><td>' + i.Carrera + '</td><td>' + i.Semestres + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="modalEditar(' + i.Id + ');"><i class="material-icons text-primary">edit</i ></button></td>' +
             '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="BorrarDatos(' + i.Id +'); "><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
@@ -139,4 +170,10 @@ function getMatricula(id)
         id = id;
     }
     return id;
+}
+
+function Limpiar() {
+    nombre.value = "";
+    apellidos.value = "";
+    carrera.value = "";
 }

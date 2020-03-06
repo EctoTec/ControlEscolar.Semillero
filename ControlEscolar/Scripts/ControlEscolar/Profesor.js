@@ -1,27 +1,34 @@
 ﻿//Botones
 let btn_Add_Profesor = document.getElementById("Ag_Add_Profesor");
 let btn_Del_Profesor = document.getElementById("Del_Prfoesor");
+let btn_edit_Profesor = document.getElementById("Edit_Profesor")
 
 //Inputs
 let input_P_Nombre = document.getElementById("P_Nombre");
 let input_P_Apellido = document.getElementById("P_Apellido");
 let input_P_Area = document.getElementById("P_Area");
-//let input_P_Del_Id = document.getElementById("Id_Eliminar");
 
 //---
 let input_M_Area = document.getElementById("Area_Mat");
+let input_M_AreaEdit = document.getElementById("Area_MatEdit");
 let input_P_Table = document.getElementById("T_Prof_body_content");
 
-function eliminar(Id){
+//--
+let arregloProf = [];
+IdEdit = null;
+
+
+let eliminar = (Id) => {
     $.ajax({
         type: "DELETE",
-        url: "/api/Profesor",
-        data: {
-            Id: Id.value
-        },
+        url: "/api/Profesor/" + Id,
         dataType: "JSON",
         success: (response) => {
-            $(alert("Eliminado con Exito"));
+            cargarProfesor();
+            $('#modaldelProf').modal('show');
+            setTimeout(function () {
+                $('#modaldelProf').modal('hide');
+            }, 1000);
             return response;
         }
     });
@@ -29,27 +36,66 @@ function eliminar(Id){
 
 
 btn_Add_Profesor.onclick = () => {
-    $.ajax({
-        type: "POST",
-        url: "/api/Profesor",
-        data: {
-            "Nombre": input_P_Nombre.value,
-            "Apellido": input_P_Apellido.value,
-            "Area": input_M_Area.value
+        if (input_P_Nombre !== "" || input_P_Apellido !== "" || input_P_Area !== "" ) {
+            $.ajax({
+                type: "POST",
+                url: "/api/Profesor",
+                data: {
+                    "Nombre": input_P_Nombre.value,
+                    "Apellido": input_P_Apellido.value,
+                    "Area": input_M_Area.value
 
+                },
+                dataType: "JSON",
+                success: (response) => {
+                    $('#modalProfesores').modal('hide');
+                    cargarProfesor();
+                    $('#modalAddProf').modal('show');
+                    setTimeout(function () {
+                        $('#modalAddProf').modal('hide');
+                    }, 1000);
+                    return response;
+                }
+            });
+        }
+        else {
+            alert("Ingrese todos los campos");
+        }
+}
+
+btn_edit_Profesor.onclick = () => {
+    $.ajax({
+        type: "PUT",
+        url: "/api/Profesor/" + IdEdit,
+        data: {
+            "Nombre": document.getElementById("P_NombreEdit").value,
+            "Apellido": document.getElementById("P_ApellidoEdit").value,
+            "Area": document.getElementById("Area_MatEdit").value
         },
         dataType: "JSON",
         success: (response) => {
-            $('#modalProfesores').modal('hide');
+            IdEdit = null;
+            $('#modalEditProf').modal('hide');
             cargarProfesor();
-            $('#modalAddProf').modal('show');
+            $('#modalActualizado').modal('show');
             setTimeout(function () {
-                $('#modalAddProf').modal('hide');
-            }, 1500);
+                $('#modalActualizado').modal('hide');
+            }, 1000);
             return response;
         }
     });
 }
+
+function editModal(id) {
+    IdEdit = id;
+    let profesor = arregloProf.find(e => e.Id == id);
+    console.log(profesor);
+    document.getElementById("P_NombreEdit").value = profesor.Nombre;
+    document.getElementById("P_ApellidoEdit").value = profesor.Apellido;
+    document.getElementById("Area_MatEdit").value = profesor.Area_Id;
+    $('#modalEditProf').modal('show');
+}
+
 
 let drawSelectArea = (arreglo) => {
     let content = input_M_Area.innerHTML;
@@ -58,14 +104,16 @@ let drawSelectArea = (arreglo) => {
         content = content + option;
     }
     input_M_Area.innerHTML = content;
+    input_M_AreaEdit.innerHTML = content;
 }
 
 
 let drawTableProfesor = (arreglo) => {
     let content = input_P_Table.innerHTML;
+    content = "";
     for (i of arreglo) {
         let row = '<tr><td>' + getNumeroProfesor(i.Id) + '</td><td>' + i.Nombre + '</td><td>' + i.Apellido + '</td><td>' + i.Area +
-            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar"  onclick="editModal(' + i.Id + ');"><i class="material-icons text-primary">edit</i ></button></td>' +
             '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="eliminar('+ i.Id +');"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
@@ -97,24 +145,25 @@ function getNumeroProfesor(id) {
 function cargarProfesor() {
     $.ajax({
         type: "GET",
-        url: "/api/Area",
+        //url: "/api/Area",
         url: "/api/Profesor",
         dataType: "JSON",
         success: (response) => {
-            drawSelectArea(response);
+           // drawSelectArea(response);
             drawTableProfesor(response);
+            arregloProf = response;
             return response;
         }
     });
 }
 
-window.onload = () => {
+let cargarArea = () => {
     $.ajax({
         type: "GET",
-        url: "/api/Profesor",
+        url: "/api/Area",
         dataType: "JSON",
         success: (response) => {
-            drawTableProfesor(response);
+            drawSelectArea(response);
             return response;
         }
     });
@@ -122,15 +171,7 @@ window.onload = () => {
 
 window.onload = () => {
     cargarProfesor();
-    $.ajax({
-        type: "GET",
-        url: "/api/Area",
-        dataType: "JSON",
-        success: (response) => {
-            drawSelectArea(response);
-            return response;
-        }
-    });
+    cargarArea();
 }
 
 //Buscar
