@@ -25,6 +25,7 @@ let GuardarDatoss = () => {
                 setTimeout(function () {
                     $('#modalAgregado').modal('hide');
                 }, 2000);
+                Limpiar();
                 return response;
             }
         });
@@ -169,4 +170,10 @@ function getMatricula(id)
         id = id;
     }
     return id;
+}
+
+function Limpiar() {
+    nombre.value = "";
+    apellidos.value = "";
+    carrera.value = "";
 }
