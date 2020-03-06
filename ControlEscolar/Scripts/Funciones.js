@@ -44,6 +44,7 @@ let GuardarDatoss = () => {
                 idAlumno = null;
                 $('#modalAlumnos').modal('hide');
                 datosAlumno();
+                Limpiar();
             }
         })
     }
