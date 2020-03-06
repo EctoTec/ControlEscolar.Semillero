@@ -149,6 +149,7 @@ let Agregar_Materia = (id = null) => {
                 },
                 dataType: "JSON",
                 success: (response) => {
+                    limpiarTodo();
                     GetMateria();
                     alert("Se ha agregado la materia satisfactoriamente");
                     return response;
@@ -168,6 +169,7 @@ let Agregar_Materia = (id = null) => {
             },
             dataType: "JSON",
             success: (response) => {
+                limpiarTodo();
                 GetMateria();
                 alert("Se ha agregado la materia satisfactoriamente");
                 return response;
@@ -187,6 +189,7 @@ let Agregar_Area = (id = null) => {
                 },
                 dataType: "JSON",
                 success: (response) => {
+                    limpiarTodo();
                     $('#Ag_Area').modal('hide');
                     GetArea();
                     return response;
@@ -204,6 +207,7 @@ let Agregar_Area = (id = null) => {
             },
             dataType: "JSON",
             success: (response) => {
+                limpiarTodo();
                 $('#Ag_Area').modal('hide');
                 GetArea();
                 return response;
@@ -224,6 +228,7 @@ let Agregar_Carrera = (id = null) => {
                 },
                 dataType: "JSON",
                 success: (response) => {
+                    limpiarTodo();
                     $('#Ag_Carrera').modal('hide');
                     GetCarrera();
                     return response;
@@ -242,6 +247,7 @@ let Agregar_Carrera = (id = null) => {
             },
             dataType: "JSON",
             success: (response) => {
+                limpiarTodo();
                 $('#Ag_Carrera').modal('hide');
                 GetCarrera();
                 return response;
@@ -439,4 +445,16 @@ function FoltradoArea() {
             }
         }
     }
+}
+
+let limpiarTodo = () => {
+    input_C_Nombre.value = "";
+    input_C_Nivel.value = "";
+    input_A_Nombre.value = "";
+    input_M_Carrera.value = "";
+    input_M_Area.value = "";
+    input_M_Nombre.value = "";
+    document.getElementById("Carrera_Mat_Ed").value = "";
+    document.getElementById("Area_Mat_Ed").value = "";
+    document.getElementById("Nombre_Mat_Ed").value = "";
 }

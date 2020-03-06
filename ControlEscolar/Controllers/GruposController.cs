@@ -63,8 +63,9 @@ namespace ControlEscolar.Controllers.Grupos
             return true;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            Boolean eliminar = false;
             using(CursoEscolarEntities contexto = new CursoEscolarEntities())
             {
                 Models.Grupo BorrarGrupo = (from Grupo in contexto.Grupo
@@ -73,6 +74,7 @@ namespace ControlEscolar.Controllers.Grupos
                 contexto.Grupo.Remove(BorrarGrupo);
                 contexto.SaveChanges();
             }
+            return eliminar;
         }
 
         /*

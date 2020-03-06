@@ -3,6 +3,35 @@ let input_Turno = document.getElementById("Turno");
 let select_Materia = document.getElementById("S_Materia");
 let select_Profesor = document.getElementById("S_Profesor");
 let arreglo_G = [];
+IDEdit = null;
+
+let eliminar = (id) => {
+    $.ajax({
+        type: "Delete",
+        url: "/api/Grupos/"+id,
+        dataType: "JSON",
+        success: (response) => {
+            cargarGrupo();
+            $('#modalDeleteGrupo').modal('show');
+            setTimeout(function () {
+                $('#modalDeleteGrupo').modal('hide');
+            }, 1000);
+            return response;
+        }
+    })
+}
+
+let editar = (id) => {
+    let objeto = arreglo_G.find(e => e.Id == id);
+    if (objeto != null) {
+        console.log(objeto);
+        document.getElementById("S_Materia").value = objeto.Materia;
+        document.getElementById("S_Profesor").value = objeto.Profesor;
+        document.getElementById("Turno").value = objeto.Turno;
+            document.getElementById("save").onclick = () => { GuardarDatosGrupo(id) };
+        $('#Ag_Grupo').modal('show');
+    }
+}
 
 let GuardarDatosGrupo = () => {
     $.ajax({
@@ -16,7 +45,6 @@ let GuardarDatosGrupo = () => {
         dataType: "JSON",
         success: (response) => {
             $('#Ag_Grupo').modal('hide');
-            location.reload();
             return response;
         }
     });
@@ -30,8 +58,9 @@ let drawpagination = (S, M) => {
     content = "";
     for (i = S; i <= M; i++) {
         console.log(i);
-        let row = '<tr><td>' + (arreglo[i].Id + 1) + '</td><td>' + arreglo[i].Materia + '</td><td>' + arreglo[i].Profesor + '</td><td>' + arreglo[i].Turno + '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="grupoEditar(this);" data-id=' + (arreglo[i].Id + 1) + '><i class="material-icons text-primary">edit</i ></button></td>' +
-            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" data-id=' + (arreglo[i].Id + 1) + '><i class="material-icons text-danger">delete</i ></button></td></tr>';
+        let row = '<tr><td>' + (arreglo[i].Id) + '</td><td>' + arreglo[i].Materia + '</td><td>' + arreglo[i].Profesor + '</td><td>' + arreglo[i].Turno +
+            '</td><td><button class="btn" data-toggle="tooltip" data-placement="top" title="Editar" onclick="editar(' + arreglo[i].Id +');"><i class="material-icons text-primary">edit</i ></button></td>' +
+            '<td><button class="btn" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="eliminar(' + arreglo[i].Id +');"><i class="material-icons text-danger">delete</i ></button></td></tr>';
         content = content + row;
     }
     Table.innerHTML = content;
@@ -52,17 +81,21 @@ let drawTable = (arreglo) => {
     drawpagination(0, 4);
 }
 
-
-window.onload = () => {
+function cargarGrupo() {
     $.ajax({
         type: "GET",
         url: "/api/Grupos",
         dataType: "JSON",
         success: (response) => {
             drawTable(response);
+            arreglo_G = response;
             return response;
         }
     });
+}
+
+window.onload = () => {
+    cargarGrupo();
 
     $.ajax({
         type: "GET",
@@ -101,7 +134,7 @@ let drawSelectMateria = (arreglo) => {
 let drawSelectProfesor = (arreglo) => {
     let content = select_Profesor.innerHTML;
     for (i of arreglo) {
-        let option = '<option value="' + i.Id + '">' + i.Nombre + '</option>';
+        let option = '<option value="' + i.Id + '">' + i.Nombre + ' ' +i.Apellido + '</option>';
         content = content + option;
     }
     select_Profesor.innerHTML = content;
@@ -128,9 +161,7 @@ function myFunction() {
 }
 
 
-
-/* FUNCION PARA BUSCAR DE ACUERDO A LETRAS
- * NO NUMEROS
+/* FUNCION PARA BUSCAR DE ACUERDO A LETRAS NO NUMEROS
 function doSearch() {
     const tableReg = document.getElementById('datos');
     const searchText = document.getElementById('searchTerm').value.toLowerCase();
@@ -174,5 +205,4 @@ function doSearch() {
         td.innerHTML = "No se han encontrado coincidencias";
     }
 }
-
 */
