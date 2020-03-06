@@ -56,6 +56,40 @@
     </div>
 </div>
 
+<!---->
+
+<div class="modal" id="modalEditProf" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Profesor</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupNombre">Nombre</label>
+                        <input type="text" class="form-control" id="P_NombreEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupApellido">Apellido</label>
+                        <input type="text" class="form-control" id="P_ApellidoEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="Area_MatEdit">Area</label>
+                        <select id="Area_MatEdit" class="form-control col-sm-11">
+                            <option value="" disabled>Selecciona un Area</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="Edit_Profesor" type="button" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--MODAL PARA USAR COMO TOAST AL AGREGAR UN PROFESOR-->
 <div class="modal" id="modalAddProf" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -74,6 +108,16 @@
         <div class="modal-content">
             <div class="modal-body">
                 <p>¡Se ha eliminado con exito!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalActualizado" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¡Actualizado correctamente!</p>
             </div>
         </div>
     </div>
