@@ -29,7 +29,6 @@ namespace ControlEscolar.Controllers.Inscripciones
             .Where(postAndMeta => postAndMeta.Materia.Alumno.Al_Id == id).Select(x => new C_Materia { Nombre = x.Carrera.Mat_Nombre, Id=x.Carrera.Mat_Id })
             .ToList();
             return View(query);
-
         } 
         
         public ActionResult ConsultarGrupos(int id)
@@ -42,6 +41,27 @@ namespace ControlEscolar.Controllers.Inscripciones
 
         public ActionResult AlumnosGpo()
         {
+            //List<InscripcionModel> query = db.Alumno
+            //    .Join(db.Carrera,
+            //        alumCar => alumCar.Al_Carrera_Id,
+            //        carrId => carrId.Car_Id,
+            //        (alumCarr, carrId) => new { Alumno = alumCarr, Carrera = carrId })
+
+            //    .Join(db.Materia,
+            //        matCarr => matCarr.Carrera.Car_Id,
+            //        carrMat => carrMat.Mat_Carrera_Id,
+            //        (matCarr, carrMat) => new { Materia = matCarr, Carrera = carrMat })
+            //    .Select(x => new InscripcionModel { NombreMateria = x.Carrera.Mat_Nombre, NombreCarr = x.Materia.Carrera.Car_Nombre })
+            //    .ToList();
+
+            List<Carrera> cCarrera = db.Carrera.ToList();
+            ViewBag.Carrera = cCarrera;
+
+            List<Materia> cMateria = db.Materia.ToList();
+            ViewBag.Materia = cMateria;
+            
+            List<Models.Grupo> cGrupo = db.Grupo.ToList();
+            ViewBag.Grupo = cGrupo;
 
             return View();
         }
