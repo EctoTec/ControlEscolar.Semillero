@@ -53,13 +53,36 @@ namespace ControlEscolar.Controllers.Materias
         }
 
         // PUT: api/Area/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, C_Area area)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                if (contexto.Area.Count() > 0)
+                {
+                    Area area1 = contexto.Area.Where(e => e.Area_Id == id).FirstOrDefault();
+                    if (area1 != null)
+                    {
+                        area1.Area_Nombre = area.Nombre;
+                        contexto.SaveChanges();
+                        guardar = true;
+                    }
+                }
+            }
+            return guardar;
         }
 
         // DELETE: api/Area/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            Boolean guardar = false;
+            using (CursoEscolarEntities contexto = new CursoEscolarEntities())
+            {
+                Area area = contexto.Area.Where(e => e.Area_Id == id).FirstOrDefault();
+                contexto.Area.Remove(area);
+                contexto.SaveChanges();
+            }
+            return guardar;
         }
     }
 }

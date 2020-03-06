@@ -29,7 +29,7 @@
                     <option value="" disabled selected>Elige una Carrera</option>
                 </select>
                 <div class="input-group-append">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Carrera">Agregar</button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Carrera"><i class="material-icons" style="font-size:18px">add</i></button>
                 </div>
             </div>
         </div>
@@ -40,11 +40,11 @@
                     <option value="" disabled selected>Elige una Area</option>
                 </select>
                 <div class="input-group-append">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Area">Agregar</button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#Ag_Area"><i class="material-icons" style="font-size:18px">add</i></button>
                 </div>
             </div>
         </div>
-        <button id="Ag_Add_Materia" class="btn btn-success">Agregar Materia</button>
+        <button id="Ag_Add_Materia" class="btn btn-success">Agregar</button>
     </div>
 </div>
 <hr>
@@ -58,8 +58,8 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-materia" role="tabpanel" aria-labelledby="nav-materia-tab">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por materias..">
-            <table class="table" id="table">
+            <input type="text" id="myInput1" onkeyup="FiltradoMateria()" placeholder="Busca por materias..">
+            <table class="table" id="table_M">
                 <thead>
                     <tr>
                         <th scope="col">Materia</th>
@@ -83,8 +83,8 @@
             </nav>
         </div>
         <div class="tab-pane fade" id="nav-carrera" role="tabpanel" aria-labelledby="nav-carrera-tab">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por carreras..">
-            <table class="table" id="table">
+            <input type="text" id="myInput2" onkeyup="FiltradoCarrera()" placeholder="Busca por carreras..">
+            <table class="table" id="table_C">
                 <thead>
                     <tr>
                         <th scope="col">Carrera</th>
@@ -96,7 +96,7 @@
                 <tbody id="T_body_content_carrera"></tbody>
             </table>
             <nav aria-label="table">
-                <ul class="pagination" id="paginacion">
+                <ul class="pagination" id="paginacionCarrera">
                     <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
                     <li class="page-item"><a class="page-link" href="#table">1</a></li>
                     <li class="page-item"><a class="page-link" href="#table">2</a></li>
@@ -106,8 +106,8 @@
             </nav>
         </div>
         <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-area-tab">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por materias..">
-            <table class="table" id="table">
+            <input type="text" id="myInput3" onkeyup="FoltradoArea()" placeholder="Busca por areas..">
+            <table class="table" id="table_A">
                 <thead>
                     <tr>
                         <th scope="col">Area</th>
@@ -117,8 +117,8 @@
                 </thead>
                 <tbody id="T_body_content_area"></tbody>
             </table>
-            <nav aria-label="table">
-                <ul class="pagination" id="paginacion">
+            <nav aria-label="table_A">
+                <ul class="pagination" id="paginacionArea">
                     <li class="page-item"><a class="page-link" href="#table">Previous</a></li>
                     <li class="page-item"><a class="page-link" href="#table">1</a></li>
                     <li class="page-item"><a class="page-link" href="#table">2</a></li>
